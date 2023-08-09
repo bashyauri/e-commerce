@@ -718,6 +718,7 @@
             <!--end header -->
             <!--start page wrapper -->
             <div class="page-wrapper">
+                @yield('admin')
 
             </div>
             <!--end page wrapper -->
