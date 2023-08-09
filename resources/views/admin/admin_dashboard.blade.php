@@ -5,7 +5,7 @@
 	<!-- Required meta tags -->
 	<meta charset="utf-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
-    {{asset('adminbackend/')}}
+
 	<!--favicon-->
 	<link rel="icon" href="{{asset('adminbackend/assets/images/favicon-32x32.png')}}" type="image/png" />
 	<!--plugins-->
@@ -34,7 +34,7 @@
 		<div class="sidebar-wrapper" data-simplebar="true">
 			<div class="sidebar-header">
 				<div>
-					<img src="assets/images/logo-icon.png" class="logo-icon" alt="logo icon">
+					<img src="{{asset('adminbackend/assets/images/logo-icon.png')}}" class="logo-icon" alt="logo icon">
 				</div>
 				<div>
 					<h4 class="logo-text">Rukada</h4>
@@ -1492,19 +1492,19 @@
 	</div>
 	<!--end switcher-->
 	<!-- Bootstrap JS -->
-	<script src="assets/js/bootstrap.bundle.min.js"></script>
+	<script src=" {{asset('adminbackend/assets/js/bootstrap.bundle.min.js')}}"></script>
 	<!--plugins-->
-	<script src="assets/js/jquery.min.js"></script>
-	<script src="assets/plugins/simplebar/js/simplebar.min.js"></script>
-	<script src="assets/plugins/metismenu/js/metisMenu.min.js"></script>
-	<script src="assets/plugins/perfect-scrollbar/js/perfect-scrollbar.js"></script>
-	<script src="assets/plugins/chartjs/js/Chart.min.js"></script>
-	<script src="assets/plugins/vectormap/jquery-jvectormap-2.0.2.min.js"></script>
-    <script src="assets/plugins/vectormap/jquery-jvectormap-world-mill-en.js"></script>
-	<script src="assets/plugins/jquery.easy-pie-chart/jquery.easypiechart.min.js"></script>
-	<script src="assets/plugins/sparkline-charts/jquery.sparkline.min.js"></script>
-	<script src="assets/plugins/jquery-knob/excanvas.js"></script>
-	<script src="assets/plugins/jquery-knob/jquery.knob.js"></script>
+	<script src=" {{asset('adminbackend/assets/js/jquery.min.js')}}"></script>
+	<script src=" {{asset('adminbackend/assets/plugins/simplebar/js/simplebar.min.js')}}"></script>
+	<script src=" {{asset('adminbackend/assets/plugins/metismenu/js/metisMenu.min.js')}}"></script>
+	<script src=" {{asset('adminbackend/assets/plugins/perfect-scrollbar/js/perfect-scrollbar.js')}}"></script>
+	<script src=" {{asset('adminbackend/assets/plugins/chartjs/js/Chart.min.js')}}"></script>
+	<script src=" {{asset('adminbackend/assets/plugins/vectormap/jquery-jvectormap-2.0.2.min.js')}}"></script>
+    <script src=" {{asset('adminbackend/assets/plugins/vectormap/jquery-jvectormap-world-mill-en.js')}}"></script>
+	<script src=" {{asset('adminbackend/assets/plugins/jquery.easy-pie-chart/jquery.easypiechart.min.js')}}"></script>
+	<script src=" {{asset('adminbackend/assets/plugins/sparkline-charts/jquery.sparkline.min.js')}}"></script>
+	<script src=" {{asset('adminbackend/assets/plugins/jquery-knob/excanvas.js')}}"></script>
+	<script src=" {{asset('adminbackend/assets/plugins/jquery-knob/jquery.knob.js')}}"></script>
 	  <script>
 		  $(function() {
 			  $(".knob").knob();
