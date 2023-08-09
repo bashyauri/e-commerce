@@ -549,7 +549,7 @@
                                             <a class="dropdown-item" href="javascript:;">
                                                 <div class="d-flex align-items-center">
                                                     <div class="user-online">
-                                                        <img src="assets/images/avatars/avatar-1.png" class="msg-avatar" alt="user avatar">
+                                                        <img src="{{asset('adminbackend/assets/images/avatars/avatar-1.png')}}" class="msg-avatar" alt="user avatar">
                                                     </div>
                                                     <div class="flex-grow-1">
                                                         <h6 class="msg-name">Daisy Anderson <span class="msg-time float-end">5 sec
@@ -559,9 +559,10 @@
                                                 </div>
                                             </a>
                                             <a class="dropdown-item" href="javascript:;">
+
                                                 <div class="d-flex align-items-center">
                                                     <div class="user-online">
-                                                        <img src="assets/images/avatars/avatar-2.png" class="msg-avatar" alt="user avatar">
+                                                        <img src="{{asset('admin/backend/assets/images/avatars/avatar-2.png')}}" class="msg-avatar" alt="user avatar">
                                                     </div>
                                                     <div class="flex-grow-1">
                                                         <h6 class="msg-name">Althea Cabardo <span class="msg-time float-end">14
@@ -573,7 +574,7 @@
                                             <a class="dropdown-item" href="javascript:;">
                                                 <div class="d-flex align-items-center">
                                                     <div class="user-online">
-                                                        <img src="assets/images/avatars/avatar-3.png" class="msg-avatar" alt="user avatar">
+                                                        <img src="  {{asset('admin/backend/assets/images/avatars/avatar-3.png')}}" class="msg-avatar" alt="user avatar">
                                                     </div>
                                                     <div class="flex-grow-1">
                                                         <h6 class="msg-name">Oscar Garner <span class="msg-time float-end">8 min
@@ -688,7 +689,7 @@
                         </div>
                         <div class="user-box dropdown">
                             <a class="d-flex align-items-center nav-link dropdown-toggle dropdown-toggle-nocaret" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-                                <img src="assets/images/avatars/avatar-2.png" class="user-img" alt="user avatar">
+                                <img src="{{asset('adminbackend/assets/images/avatars/avatar-2.png')}}" class="user-img" alt="user avatar">
                                 <div class="user-info ps-3">
                                     <p class="user-name mb-0">Pauline Seitz</p>
                                     <p class="designattion mb-0">Web Designer</p>
@@ -833,9 +834,9 @@
         <!-- Bootstrap JS -->
         <script src=" {{asset('adminbackend/assets/js/bootstrap.bundle.min.js')}}"></script>
         <!--plugins-->
-        <script src=" {{asset('adminbackend/assets/js/jquery.min.js')}}"></script>
-        <script src=" {{asset('adminbackend/assets/plugins/simplebar/js/simplebar.min.js')}}"></script>
-        <script src=" {{asset('adminbackend/assets/plugins/metismenu/js/metisMenu.min.js')}}"></script>
+        <script src="{{asset('adminbackend/assets/js/jquery.min.js')}}"></script>
+        <script src="{{asset('adminbackend/assets/plugins/simplebar/js/simplebar.min.js')}}"></script>
+        <script src="{{asset('adminbackend/assets/plugins/metismenu/js/metisMenu.min.js')}}"></script>
         <script src=" {{asset('adminbackend/assets/plugins/perfect-scrollbar/js/perfect-scrollbar.js')}}"></script>
         <script src=" {{asset('adminbackend/assets/plugins/chartjs/js/Chart.min.js')}}"></script>
         <script src=" {{asset('adminbackend/assets/plugins/vectormap/jquery-jvectormap-2.0.2.min.js')}}"></script>
@@ -849,9 +850,9 @@
                 $(".knob").knob();
             });
         </script>
-        <script src="assets/js/index.js"></script>
+        <script src="{{asset('adminbackend/assets/js/index.js')}}"></script>
         <!--app JS-->
-        <script src="assets/js/app.js"></script>
+        <script src="{{asset('adminbackend/assets/js/app.js')}}"></script>
     </body>
 
     </html>
