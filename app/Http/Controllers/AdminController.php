@@ -19,8 +19,8 @@ class AdminController extends Controller
     }
     public function profile(): View
     {
-        $id = auth()->user()->id;
-        return view('admin.profile');
+        $user = auth()->user();
+        return view('admin.profile', ['user' => $user]);
     }
     public function logout(Request $request): RedirectResponse
     {
