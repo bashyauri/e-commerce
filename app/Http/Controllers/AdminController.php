@@ -17,6 +17,11 @@ class AdminController extends Controller
     {
         return view('admin.login');
     }
+    public function profile(): View
+    {
+        $id = auth()->user()->id;
+        return view('admin.profile');
+    }
     public function logout(Request $request): RedirectResponse
     {
         Auth::guard('web')->logout();
