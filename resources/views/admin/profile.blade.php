@@ -27,9 +27,9 @@
                             <div class="d-flex flex-column align-items-center text-center">
                                 <img src="{{ !empty($user->photo) ? url('uploads/admin_images/' . $user->photo)  : url('uploads/no_image.jpg') }}" alt="Admin" class="rounded-circle p-1 bg-primary" width="110">
                                 <div class="mt-3">
-                                    <h4>John Doe</h4>
-                                    <p class="text-secondary mb-1">Full Stack Developer</p>
-                                    <p class="text-muted font-size-sm">Bay Area, San Francisco, CA</p>
+                                    <h4>{{strtoupper($user->name)}}</h4>
+                                    <p class="text-secondary mb-1">{{$user->email}}</p>
+                                    <p class="text-muted font-size-sm">{{$user->address}}</p>
 
                                 </div>
                             </div>
@@ -57,7 +57,7 @@
                                     <h6 class="mb-0">User Name</h6>
                                 </div>
                                 <div class="col-sm-9 text-secondary">
-                                    <input type="text" class="form-control" value="{{$user->username}}" />
+                                    <input type="text" class="form-control" value="{{$user->username}}" disabled/>
                                 </div>
                             </div>
                             <div class="row mb-3">
@@ -92,6 +92,24 @@
                                     <input type="text" class="form-control" value="{{$user->address}}" />
                                 </div>
                             </div>
+                            <div class="row mb-3">
+                                <div class="col-sm-3">
+                                    <h6 class="mb-0">Photo</h6>
+                                </div>
+                                <div class="col-sm-9 text-secondary">
+                                    <input type="file" id="image" class="form-control"  />
+                                </div>
+                            </div>
+                            <div class="row mb-3">
+                                <div class="col-sm-3">
+                                    <h6 class="mb-0"></h6>
+                                </div>
+                                <div class="col-sm-9 text-secondary">
+                                    <img id="show-image" src="
+                                    {{ !empty($user->photo) ? url('uploads/admin_images/' . $user->photo)  : url('uploads/no_image.jpg') }}"
+                                    alt="Admin" style="width:100px; height:100px">
+                                </div>
+                            </div>
                             <div class="row">
                                 <div class="col-sm-3"></div>
                                 <div class="col-sm-9 text-secondary">
@@ -106,4 +124,17 @@
         </div>
     </div>
 </div>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.4/jquery.min.js"></script>
+<script type="text/javascript">
+    $(document).ready(function(){
+        $('#image').change(function(e){
+            let reader = new FileReader();
+            reader.onload = function(e){
+                $('#show-image').attr('src',e.target.result);
+            }
+            reader.readAsDataURL(e.target.files['0']);
+        });
+    });
+
+</script>
 @endsection
