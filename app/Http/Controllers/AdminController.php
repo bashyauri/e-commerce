@@ -2,6 +2,8 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\AdminRequest;
+use App\Models\User;
 use Illuminate\Contracts\View\View;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
@@ -21,6 +23,21 @@ class AdminController extends Controller
     {
         $user = auth()->user();
         return view('admin.profile', ['user' => $user]);
+    }
+    public function store(AdminRequest $request)
+    {
+        $data = $request->validated();
+
+
+        if ($request->file('photo')) {
+            $file = $request->file('photo');
+            unlink(public_path('uploads/admin_images/' . auth()->user()->photo));
+            $filename = date('YmdHi') . $file->getClientOriginalName();
+            $file->move(public_path('uploads/admin_images/'), $filename);
+            $data['photo'] = $filename;
+        }
+        User::where(['id' => auth()->id()])->update($data);
+        return redirect()->back();
     }
     public function logout(Request $request): RedirectResponse
     {
