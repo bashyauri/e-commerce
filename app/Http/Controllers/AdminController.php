@@ -24,7 +24,7 @@ class AdminController extends Controller
         $user = auth()->user();
         return view('admin.profile', ['user' => $user]);
     }
-    public function store(AdminRequest $request)
+    public function store(AdminRequest $request): RedirectResponse
     {
         $data = $request->validated();
 
@@ -37,7 +37,8 @@ class AdminController extends Controller
             $data['photo'] = $filename;
         }
         User::where(['id' => auth()->id()])->update($data);
-        return redirect()->back();
+        $notifiction = ['message' => 'Admin Profile updated!', 'alert-type' => 'success'];
+        return redirect()->back()->with($notifiction);
     }
     public function logout(Request $request): RedirectResponse
     {
