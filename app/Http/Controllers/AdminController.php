@@ -40,6 +40,10 @@ class AdminController extends Controller
         $notifiction = ['message' => 'Admin Profile updated!', 'alert-type' => 'success'];
         return redirect()->back()->with($notifiction);
     }
+    public function changePassword(): View
+    {
+        return view('admin.change-password');
+    }
     public function logout(Request $request): RedirectResponse
     {
         Auth::guard('web')->logout();
