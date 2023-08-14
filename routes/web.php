@@ -39,6 +39,7 @@ Route::middleware(['auth', 'role:admin'])->group(function () {
     Route::get('/admin/logout', [AdminController::class, 'logout'])->name('admin.logout');
     Route::get('/admin/profile', [AdminController::class, 'profile'])->name('admin.profile');
     Route::post('/admin/profile/store', [AdminController::class, 'store'])->name('admin.profile.store');
+    Route::get('/admin/change/password', [AdminController::class, 'changePassword'])->name('admin.change-password');
 });
 // vendor Dashboard
 Route::middleware(['auth', 'role:vendor'])->group(function () {
