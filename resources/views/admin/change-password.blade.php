@@ -25,18 +25,19 @@
                 <div class="col-lg-8">
                     <div class="card">
                         <div class="card-body">
+                            @if (session('success'))
+                            <div class="alert alert-success" role="alert">
+                                {{session('success')}}
+                            </div>
+                            @elseif(session('error'))
+                            <div class="alert alert-danger" role="alert">
+                                {{session('error')}}
+                            </div>
+                            @endif
 
-                            <form method="post" action="{{route('admin.profile.store')}}" >
+                            <form method="post" action="{{route('update.password')}}" >
                                 @csrf
-                                @if (session('status'))
-                                <div class="alert alert-success" role="alert">
-                                    {{session('status')}}
-                                </div>
-                                @elseif(session('error'))
-                                <div class="alert alert-danger" role="alert">
-                                    {{session('error')}}
-                                </div>
-                                @endif
+
                             <div class="row mb-3">
                                 <div class="col-sm-3">
                                     <h6 class="mb-0">Current Password</h6>
