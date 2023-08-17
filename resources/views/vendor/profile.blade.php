@@ -64,7 +64,7 @@
                             </div>
                             <div class="row mb-3">
                                 <div class="col-sm-3">
-                                    <h6 class="mb-0">Full Name</h6>
+                                    <h6 class="mb-0">Shop Name</h6>
                                 </div>
                                 <div class="col-sm-9 text-secondary">
                                     <input type="text" name="name" class="form-control" value="{{$user->name}}" />
@@ -72,7 +72,7 @@
                             </div>
                             <div class="row mb-3">
                                 <div class="col-sm-3">
-                                    <h6 class="mb-0">Email</h6>
+                                    <h6 class="mb-0">Vendor Email</h6>
                                 </div>
                                 <div class="col-sm-9 text-secondary">
                                     <input type="text" name="email" class="form-control" value="{{$user->email}}" />
@@ -80,7 +80,7 @@
                             </div>
                             <div class="row mb-3">
                                 <div class="col-sm-3">
-                                    <h6 class="mb-0">Phone</h6>
+                                    <h6 class="mb-0">Vendor Phone</h6>
                                 </div>
                                 <div class="col-sm-9 text-secondary">
                                     <input type="text" name="phone" class="form-control" value="{{$user->phone}}" />
@@ -88,10 +88,31 @@
                             </div>
                             <div class="row mb-3">
                                 <div class="col-sm-3">
-                                    <h6 class="mb-0">Address</h6>
+                                    <h6 class="mb-0">Vendor Address</h6>
                                 </div>
                                 <div class="col-sm-9 text-secondary">
                                     <input type="text" name="address" class="form-control" value="{{$user->address}}" />
+                                </div>
+                            </div>
+                            <div class="row mb-3">
+                                <div class="col-sm-3">
+                                    <h6 class="mb-0">Vendor Joined Date</h6>
+                                </div>
+                                <div class="col-sm-9 text-secondary">
+                                    <select name="vendor_join" class="form-select mb-3" aria-label="Default select example">
+                                        <option selected="">Open this select menu</option>
+                                        <option value="2023">2023</option>
+                                        <option value="2024">2024</option>
+                                        <option value="2025">2025</option>
+                                        <option value="2026">2026</option>
+                                    </select>
+                            </div>
+                            <div class="row mb-3">
+                                <div class="col-sm-3">
+                                    <h6 class="mb-0">Vendor Info</h6>
+                                </div>
+                                <div class="col-sm-9 text-secondary">
+                                    <textarea name="vendor_short_info" class="form-control" id="inputAddress" placeholder="Address..." rows="3"></textarea>
                                 </div>
                             </div>
                             <div class="row mb-3">
