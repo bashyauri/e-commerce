@@ -2,11 +2,13 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\Admin\UpdatePasswordRequest;
 use App\Http\Requests\Vendor\VendorRequest;
 use Illuminate\Contracts\View\View;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Hash;
 
 class VendorController extends Controller
 {
@@ -30,14 +32,16 @@ class VendorController extends Controller
 
         if ($request->file('photo')) {
             $file = $request->file('photo');
-            unlink(public_path('uploads/admin_images/' . auth()->user()->photo));
+            if (file_exists(public_path('uploads/vendor_images/' . auth()->user()->photo))) {
+                unlink(public_path('uploads/vendor_images/' . auth()->user()->photo));
+            }
             $filename = date('YmdHi') . $file->getClientOriginalName();
-            $file->move(public_path('uploads/admin_images/'), $filename);
+            $file->move(public_path('uploads/vendor_images/'), $filename);
             $data['photo'] = $filename;
         }
         auth()->user()->update($data);
 
-        $notifiction = ['message' => 'Admin Profile updated!', 'alert-type' => 'success'];
+        $notifiction = ['message' => 'Vendor Profile updated!', 'alert-type' => 'success'];
         return redirect()->back()->with($notifiction);
     }
     public function changePassword(): View
