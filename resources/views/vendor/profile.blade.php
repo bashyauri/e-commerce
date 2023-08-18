@@ -101,10 +101,10 @@
                                 <div class="col-sm-9 text-secondary">
                                     <select name="vendor_join" class="form-select mb-3" aria-label="Default select example">
                                         <option selected="">Open this select menu</option>
-                                        <option value="2023">2023</option>
-                                        <option value="2024">2024</option>
-                                        <option value="2025">2025</option>
-                                        <option value="2026">2026</option>
+                                        <option value="2023" {{$user->vendor_join ==2023 ? 'selected' : ''}} >2023</option>
+                                        <option value="2024" {{$user->vendor_join == 2024 ? 'selected' : ''}}>2024</option>
+                                        <option value="2025" {{$user->vendor_join == 2025 ? 'selected' : ''}}>2025</option>
+                                        <option value="2026" {{$user->vendor_join == 2026 ? 'selected' : ''}}>2026</option>
                                     </select>
                             </div>
                             <div class="row mb-3">
