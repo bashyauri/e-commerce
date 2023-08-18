@@ -33,7 +33,9 @@ class AdminController extends Controller
 
         if ($request->file('photo')) {
             $file = $request->file('photo');
-            unlink(public_path('uploads/admin_images/' . auth()->user()->photo));
+            if (file_exists(public_path('uploads/admin_images/' . auth()->user()->photo))) {
+                unlink(public_path('uploads/admin_images/' . auth()->user()->photo));
+            }
             $filename = date('YmdHi') . $file->getClientOriginalName();
             $file->move(public_path('uploads/admin_images/'), $filename);
             $data['photo'] = $filename;
