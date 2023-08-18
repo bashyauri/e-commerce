@@ -25,7 +25,7 @@
                     <div class="card">
                         <div class="card-body">
                             <div class="d-flex flex-column align-items-center text-center">
-                                <img src="{{ !empty($user->photo) ? url('uploads/admin_images/' . $user->photo)  : url('uploads/no_image.jpg') }}" alt="Admin" class="rounded-circle p-1 bg-primary" width="110">
+                                <img src="{{ !empty($user->photo) ? url('uploads/vendor_images/' . $user->photo)  : url('uploads/no_image.jpg') }}" alt="Vendor" class="rounded-circle p-1 bg-primary" width="110">
                                 <div class="mt-3">
                                     <h4>{{strtoupper($user->name)}}</h4>
                                     <p class="text-secondary mb-1">{{$user->email}}</p>
@@ -91,7 +91,7 @@
                                     <h6 class="mb-0">Vendor Address</h6>
                                 </div>
                                 <div class="col-sm-9 text-secondary">
-                                    <input type="text" name="address" class="form-control" value="{{$user->address}}" />
+                                    <input type="text" name="vendor_address" class="form-control" value="{{$user->address}}" />
                                 </div>
                             </div>
                             <div class="row mb-3">
@@ -112,7 +112,7 @@
                                     <h6 class="mb-0">Vendor Info</h6>
                                 </div>
                                 <div class="col-sm-9 text-secondary">
-                                    <textarea name="vendor_short_info" class="form-control" id="inputAddress" placeholder="Address..." rows="3"></textarea>
+                                    <textarea name="vendor_short_info" class="form-control" id="inputAddress" placeholder="Vendor Info" rows="3">{{$user->vendor_short_info}}</textarea>
                                 </div>
                             </div>
                             <div class="row mb-3">
