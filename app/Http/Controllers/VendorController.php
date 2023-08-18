@@ -2,7 +2,7 @@
 
 namespace App\Http\Controllers;
 
-use App\Http\Requests\Admin\UpdatePasswordRequest;
+use App\Http\Requests\Vendor\UpdatePasswordRequest;
 use App\Http\Requests\Vendor\VendorRequest;
 use Illuminate\Contracts\View\View;
 use Illuminate\Http\RedirectResponse;
@@ -46,7 +46,7 @@ class VendorController extends Controller
     }
     public function changePassword(): View
     {
-        return view('admin.change-password');
+        return view('vendor.change-password');
     }
     public function updatePassword(UpdatePasswordRequest $request): RedirectResponse
     {
