@@ -7,6 +7,7 @@ use App\Models\User;
 use Illuminate\Contracts\View\View;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class UserController extends Controller
 {
@@ -37,5 +38,15 @@ class UserController extends Controller
         User::where(['id' => auth()->id()])->update($data);
         $notifiction = ['message' => 'User Profile updated!', 'alert-type' => 'success'];
         return redirect()->back()->with($notifiction);
+    }
+    public function logout(Request $request): RedirectResponse
+    {
+        Auth::guard('web')->logout();
+
+        $request->session()->invalidate();
+
+        $request->session()->regenerateToken();
+
+        return redirect('/login');
     }
 }
