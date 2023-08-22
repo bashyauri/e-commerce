@@ -30,11 +30,16 @@ class VendorController extends Controller
         $data = $request->validated();
 
 
-        if ($request->file('photo')) {
+        if ($request->hasFile('photo')) {
             $file = $request->file('photo');
-            if (file_exists(public_path('uploads/vendor_images/' . auth()->user()->photo))) {
-                unlink(public_path('uploads/vendor_images/' . auth()->user()->photo));
+
+            if (auth()->user()->photo) {
+                $oldPhotoPath = public_path('uploads/vendor_images/' . auth()->user()->photo);
+                if (file_exists($oldPhotoPath)) {
+                    unlink($oldPhotoPath);
+                }
             }
+
             $filename = date('YmdHi') . $file->getClientOriginalName();
             $file->move(public_path('uploads/vendor_images/'), $filename);
             $data['photo'] = $filename;

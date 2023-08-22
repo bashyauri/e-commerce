@@ -24,6 +24,7 @@ Route::get('/', function () {
 Route::middleware(['auth'])->group(function () {
 
     Route::get('/dashboard', [UserController::class, 'userDashboard'])->name('dashboard');
+    Route::post('/user/profile/store', [UserController::class, 'store'])->name('user.profile.store');
 });
 // Group middleware end
 // Route::get('/dashboard', function () {
