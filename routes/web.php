@@ -26,6 +26,7 @@ Route::middleware(['auth'])->group(function () {
     Route::get('/dashboard', [UserController::class, 'userDashboard'])->name('dashboard');
     Route::post('/user/profile/store', [UserController::class, 'store'])->name('user.profile.store');
     Route::get('/user/logout', [UserController::class, 'logout'])->name('user.logout');
+    Route::post('/user/update/password', [UserController::class, 'updatePassword'])->name('user.update.password');
 });
 // Group middleware end
 // Route::get('/dashboard', function () {

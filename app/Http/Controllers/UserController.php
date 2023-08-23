@@ -2,12 +2,14 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\User\UpdatePasswordRequest;
 use App\Http\Requests\User\UserRequest;
 use App\Models\User;
 use Illuminate\Contracts\View\View;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Hash;
 
 class UserController extends Controller
 {
@@ -38,6 +40,20 @@ class UserController extends Controller
         User::where(['id' => auth()->id()])->update($data);
         $notifiction = ['message' => 'User Profile updated!', 'alert-type' => 'success'];
         return redirect()->back()->with($notifiction);
+    }
+    public function updatePassword(UpdatePasswordRequest $request): RedirectResponse
+    {
+        $data = $request->validated();
+
+
+        if (!Hash::check($data['current_password'], auth()->user()->password)) {
+            return back()->with('error', 'Current password does not match');
+        }
+        auth()->user()->update([
+            'password' => Hash::make($data['new_password']),
+        ]);
+
+        return back()->with('success', 'Password has been updated');
     }
     public function logout(Request $request): RedirectResponse
     {
