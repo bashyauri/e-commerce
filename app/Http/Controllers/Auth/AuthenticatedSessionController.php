@@ -28,6 +28,7 @@ class AuthenticatedSessionController extends Controller
         $request->authenticate();
 
         $request->session()->regenerate();
+        $notifiction = ['message' => 'Login Successfully', 'alert-type' => 'success'];
         $url = '';
         if ($request->user()->role === 'admin') {
             $url = 'admin/dashboard';
@@ -37,7 +38,7 @@ class AuthenticatedSessionController extends Controller
             $url = '/dashboard';
         }
 
-        return redirect()->intended($url);
+        return redirect()->intended($url)->with($notifiction);
     }
 
     /**
@@ -45,6 +46,7 @@ class AuthenticatedSessionController extends Controller
      */
     public function destroy(Request $request): RedirectResponse
     {
+
         Auth::guard('web')->logout();
 
         $request->session()->invalidate();
