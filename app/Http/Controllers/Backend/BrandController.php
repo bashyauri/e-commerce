@@ -14,4 +14,8 @@ class BrandController extends Controller
         $brands = Brand::latest()->get();
         return view('backend.brand.all-brand', ['brands' => $brands]);
     }
+    public function addBrand(): View
+    {
+        return view('backend.brand.add-brand');
+    }
 }
