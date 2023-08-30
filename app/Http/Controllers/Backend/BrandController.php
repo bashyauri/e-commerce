@@ -36,4 +36,9 @@ class BrandController extends Controller
         $notifiction = ['message' => 'Brand Created Successfully !', 'alert-type' => 'success'];
         return redirect()->route('all.brand')->with($notifiction);
     }
+    public function editBrand($id): View
+    {
+        $brand = Brand::findOrFail($id);
+        return view('backend.brand.edit-brand', ['brand' => $brand]);
+    }
 }
