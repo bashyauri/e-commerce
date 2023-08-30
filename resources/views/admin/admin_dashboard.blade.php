@@ -92,6 +92,9 @@
 
 	<!--app JS-->
 	<script src="{{ asset('adminbackend/assets/js/app.js') }}"></script>
+    {{-- validate js --}}
+    <script src="{{ asset('adminbackend/assets/js/validate.js') }}"></script>
+
 
 	<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.js"></script>
 
