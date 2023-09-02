@@ -9,6 +9,7 @@ use App\Models\Brand;
 use Illuminate\Contracts\View\View;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 use Image;
 
 class BrandController extends Controller
@@ -38,7 +39,7 @@ class BrandController extends Controller
         $notifiction = ['message' => 'Brand Created Successfully !', 'alert-type' => 'success'];
         return redirect()->route('all.brand')->with($notifiction);
     }
-    public function editBrand($id): View
+    public function editBrand(string $id): View
     {
         $brand = Brand::findOrFail($id);
         return view('backend.brand.edit-brand', ['brand' => $brand]);
@@ -72,5 +73,16 @@ class BrandController extends Controller
 
         $notifiction = ['message' => 'Brand Updated without image Successfully !', 'alert-type' => 'success'];
         return redirect()->route('all.brand')->with($notifiction);
+    }
+    public function deleteBrand(string $id)
+    {
+        $brand = Brand::findOrFail($id);
+
+        DB::transaction(function () use ($brand) {
+            $brand->delete();
+            unlink($brand->brand_image);
+        });
+        $notifiction = ['message' => 'Brand Deleted Successfully !', 'alert-type' => 'success'];
+        return redirect()->back()->with($notifiction);
     }
 }
