@@ -8,6 +8,7 @@ use App\Http\Requests\Admin\UpdateCategoryRequest;
 use App\Models\Category;
 use Illuminate\Contracts\View\View;
 use Illuminate\Http\RedirectResponse;
+use Illuminate\Support\Facades\DB;
 use Image;
 
 
@@ -72,5 +73,16 @@ class CategoryController extends Controller
 
         $notifiction = ['message' => 'Category Updated without image Successfully !', 'alert-type' => 'success'];
         return redirect()->route('all.category')->with($notifiction);
+    }
+    public function deleteCategory(string $id): RedirectResponse
+    {
+        $category = Category::findOrFail($id);
+
+        DB::transaction(function () use ($category) {
+            $category->delete();
+            unlink($category->category_image);
+        });
+        $notifiction = ['message' => 'Category Deleted Successfully !', 'alert-type' => 'success'];
+        return redirect()->back()->with($notifiction);
     }
 }
