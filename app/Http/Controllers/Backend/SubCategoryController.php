@@ -67,7 +67,7 @@ class SubCategoryController extends Controller
         SubCategory::findOrFail($id)->delete();
 
 
-        $notifiction = ['message' => 'Category Deleted Successfully !', 'alert-type' => 'success'];
+        $notifiction = ['message' => 'SubCategory Deleted Successfully !', 'alert-type' => 'success'];
         return redirect()->back()->with($notifiction);
     }
 }
