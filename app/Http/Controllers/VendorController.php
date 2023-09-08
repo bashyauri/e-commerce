@@ -77,4 +77,8 @@ class VendorController extends Controller
 
         return redirect('/vendor/login');
     }
+    public function becomeVendor()
+    {
+        return view('auth.become-vendor');
+    }
 }
