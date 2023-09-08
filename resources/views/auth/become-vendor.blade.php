@@ -43,23 +43,43 @@
                                             <h1 class="mb-5">Become a Vendor</h1>
          <p class="mb-30">Already have a vendor account? <a href="{{ route('vendor.login') }}">Login</a></p>
                                         </div>
+                                        @if (session('success'))
+                                        <div class="alert alert-success" role="alert">
+                                            {{session('success')}}
+                                        </div>
+                                        @elseif(session('error'))
+                                        <div class="alert alert-danger" role="alert">
+                                            {{session('error')}}
+                                        </div>
+                                        @endif
 
-
- <form method="POST" action="{{ route('register') }}">
+ <form method="POST" action="{{ route('vendor.register') }}">
             @csrf
 
 
     <div class="form-group">
         <input type="text" id="name" required="" name="name" placeholder="Shop Name" />
+        @error('name')
+        <div class="alert alert-danger">{{ $message }}</div>
+    @enderror
     </div>
     <div class="form-group">
         <input type="text" id="username" required="" name="username" placeholder="User Name" />
+        @error('username')
+        <div class="alert alert-danger">{{ $message }}</div>
+    @enderror
     </div>
     <div class="form-group">
         <input type="email"  id="email" required="" name="email" placeholder="Email" />
+        @error('email')
+        <div class="alert alert-danger">{{ $message }}</div>
+    @enderror
     </div>
     <div class="form-group">
         <input type="text" id="phone" required="" name="phone" placeholder="Phone Number" />
+        @error('phone')
+        <div class="alert alert-danger">{{ $message }}</div>
+    @enderror
     </div>
     <div class="form-group">
         <select class="form-select mb-3" name="vendor_join" aria-label="Default select example">
@@ -70,13 +90,22 @@
             <option value="2025">2025</option>
             <option value="2026">2026</option>
         </select>
+        @error('vendor_join')
+        <div class="alert alert-danger">{{ $message }}</div>
+    @enderror
     </div>
 
     <div class="form-group">
         <input required=""  id="password"  type="password" name="password" placeholder="Password" />
+        @error('password')
+        <div class="alert alert-danger">{{ $message }}</div>
+    @enderror
     </div>
     <div class="form-group">
-        <input required="" id="password_confirmation" type="password" name="password_confirmation" placeholder="Confirm password" />
+        <input required="" id="confirm_password" type="password" name="confirm_password" placeholder="Confirm password" />
+        @error('confirm_password')
+        <div class="alert alert-danger">{{ $message }}</div>
+    @enderror
     </div>
 
 
