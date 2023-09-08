@@ -61,9 +61,9 @@ class SubCategoryController extends Controller
         $notifiction = ['message' => 'SubCategory Updated Successfully !', 'alert-type' => 'success'];
         return redirect()->route('all.subcategory')->with($notifiction);
     }
-    public function deleteSubCategory(string $id): RedirectResponse
+    public function deleteSubCategory(SubCategory $subcategory): RedirectResponse
     {
-        SubCategory::findOrFail($id)->delete();
+        $subcategory->delete();
 
 
         $notifiction = ['message' => 'SubCategory Deleted Successfully !', 'alert-type' => 'success'];

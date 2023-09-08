@@ -80,7 +80,7 @@ Route::middleware(['auth', 'role:admin'])->group(function () {
         Route::post('/store/brand', 'storeBrand')->name('store.brand');
         Route::get('/edit/brand/{id}', 'editBrand')->name('edit.brand');
         Route::post('/update/brand/', 'updateBrand')->name('update.brand');
-        Route::get('/delete/brand/{id}', 'deleteBrand')->name('delete.brand');
+        Route::delete('/delete/brand/{brand}', 'deleteBrand')->name('delete.brand');
     });
 
     Route::controller(CategoryController::class)->group(function () {
@@ -91,7 +91,7 @@ Route::middleware(['auth', 'role:admin'])->group(function () {
         Route::post('/store/category', 'storeCategory')->name('store.category');
         Route::get('/edit/category/{id}', 'editCategory')->name('edit.category');
         Route::post('/update/category/', 'updateCategory')->name('update.category');
-        Route::get('/delete/category/{id}', 'deleteCategory')->name('delete.category');
+        Route::delete('/delete/category/{category}', 'deleteCategory')->name('delete.category');
     });
     Route::controller(SubCategoryController::class)->group(function () {
         // All subcategory routes
@@ -101,6 +101,6 @@ Route::middleware(['auth', 'role:admin'])->group(function () {
         Route::post('/store/subcategory', 'storeSubCategory')->name('store.subcategory');
         Route::get('/edit/subcategory/{id}', 'editSubCategory')->name('edit.subcategory');
         Route::post('/update/subcategory/', 'updateSubCategory')->name('update.subcategory');
-        Route::get('/delete/subcategory/{id}', 'deleteSubCategory')->name('delete.subcategory');
+        Route::delete('/delete/subcategory/{subcategory}', 'deleteSubCategory')->name('delete.subcategory');
     });
 });

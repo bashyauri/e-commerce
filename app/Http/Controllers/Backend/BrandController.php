@@ -73,9 +73,9 @@ class BrandController extends Controller
         $notifiction = ['message' => 'Brand Updated without image Successfully !', 'alert-type' => 'success'];
         return redirect()->route('all.brand')->with($notifiction);
     }
-    public function deleteBrand(string $id): RedirectResponse
+    public function deleteBrand(Brand $brand): RedirectResponse
     {
-        $brand = Brand::findOrFail($id);
+
 
         DB::transaction(function () use ($brand) {
             $brand->delete();

@@ -46,8 +46,14 @@
 				<td> <img src="{{ asset($item->category_image) }}" style="width: 70px; height:40px;" >  </td>
 
 				<td>
-<a href="{{route('edit.category',$item->id)}}" class="btn btn-info">Edit</a>
-<a href="{{route('delete.category',$item->id)}}" class="btn btn-danger" id="delete">Delete</a>
+{{-- <a href="{{route('edit.category',$item->id)}}" class="btn btn-info">Edit</a>
+<a href="{{route('delete.category',$item->id)}}" class="btn btn-danger" id="delete">Delete</a> --}}
+    <form action="{{ route('delete.category',$item->id) }}" method="Post">
+        <a class="btn btn-primary" href="{{ route('edit.category',$item->id) }}">Edit</a>
+        @csrf
+        @method('DELETE')
+        <button type="submit" class="btn btn-danger" id="delete" >Delete</button>
+    </form>
 
 				</td>
 			</tr>

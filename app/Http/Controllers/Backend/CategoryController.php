@@ -74,9 +74,9 @@ class CategoryController extends Controller
         $notifiction = ['message' => 'Category Updated without image Successfully !', 'alert-type' => 'success'];
         return redirect()->route('all.category')->with($notifiction);
     }
-    public function deleteCategory(string $id): RedirectResponse
+    public function deleteCategory(Category $category): RedirectResponse
     {
-        $category = Category::findOrFail($id);
+
 
         DB::transaction(function () use ($category) {
             $category->delete();

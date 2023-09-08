@@ -46,9 +46,12 @@
 				<td>{{ $item->subcategory_name }}  </td>
 
 				<td>
-<a href="{{route('edit.subcategory',$item->id)}}" class="btn btn-info">Edit</a>
-<a href="{{route('delete.subcategory',$item->id)}}" class="btn btn-danger" id="delete">Delete</a>
-
+                    <form action="{{ route('delete.subcategory',$item->id) }}" method="Post">
+                        <a class="btn btn-primary" href="{{ route('edit.subcategory',$item->id) }}">Edit</a>
+                        @csrf
+                        @method('DELETE')
+                        <button type="submit" class="btn btn-danger" id="delete" >Delete</button>
+                    </form>
 				</td>
 			</tr>
 			@endforeach
