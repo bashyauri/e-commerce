@@ -67,6 +67,15 @@ class AdminController extends Controller
 
         return back()->with('success', 'Password has been updated');
     }
+    public function inactiveVendor()
+    {
+        $inactiveVendors = User::where(['status' => 'inactive', 'role' => 'vendor'])
+            ->latest()->get();
+        return view('vendor.inactive-vendors', ['inactiveVendors' => $inactiveVendors]);
+    }
+    public function activeVendor()
+    {
+    }
     public function logout(Request $request): RedirectResponse
     {
         Auth::guard('web')->logout();
