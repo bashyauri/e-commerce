@@ -49,7 +49,7 @@
                 <td>{{ $item->email }}</td>
                 <td>{{ $item->vendor_join }}</td>
 
-                <td><span class="btn btn-secondary">{{ $item->status }}</span></td>
+                <td><span class="btn btn-success">{{ $item->status }}</span></td>
 
 				<td>
 
