@@ -79,6 +79,22 @@ class AdminController extends Controller
             ->latest()->get();
         return view('vendor.active-vendors', ['activeVendors' => $activeVendors]);
     }
+    public function inactiveVendorDetails(User $vendor): View
+    {
+
+        return view('vendor.inactive-vendor-details', ['vendor' => $vendor]);
+    }
+    public function activateVendor(User $vendor): RedirectResponse
+    {
+        $vendor->update([
+            'status' => 'active',
+        ]);
+        $notifiction = ['message' => 'Vendor activated Successfully!!', 'alert-type' => 'success'];
+        return to_route('active.vendor')->with($notifiction);
+    }
+    public function activeVendorDetails()
+    {
+    }
 
     public function logout(Request $request): RedirectResponse
     {

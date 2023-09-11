@@ -107,6 +107,7 @@ Route::middleware(['auth', 'role:admin'])->group(function () {
         // All Active and Inactive Vendors
         Route::get('/inactive/vendor', 'inactiveVendor')->name('inactive.vendor');
         Route::get('/active/vendor', 'activeVendor')->name('active.vendor');
-
+        Route::get('/active/vendor-details/{vendor}', 'inactiveVendorDetails')->name('inactive.vendor-details');
+        Route::patch('/activate/vendor/{vendor}', 'activateVendor')->name('activate.vendor');
     });
 });
