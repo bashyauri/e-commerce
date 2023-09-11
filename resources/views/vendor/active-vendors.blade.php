@@ -53,7 +53,7 @@
 
 				<td>
 
-                        <a class="btn btn-primary" href="{{ route('edit.subcategory',$item->id) }}">Vendor Details</a>
+                    <a class="btn btn-primary" href="{{ route('active.vendor-details',$item->id) }}">Vendor Details</a>
 
 
 				</td>

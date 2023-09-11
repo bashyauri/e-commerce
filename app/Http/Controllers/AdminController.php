@@ -92,8 +92,17 @@ class AdminController extends Controller
         $notifiction = ['message' => 'Vendor activated Successfully!!', 'alert-type' => 'success'];
         return to_route('active.vendor')->with($notifiction);
     }
-    public function activeVendorDetails()
+    public function activeVendorDetails(User $vendor)
     {
+        return view('vendor.active-vendor-details', ['vendor' => $vendor]);
+    }
+    public function deactivateVendor(User $vendor): RedirectResponse
+    {
+        $vendor->update([
+            'status' => 'inactive',
+        ]);
+        $notifiction = ['message' => 'Vendor deactivated Successfully!!', 'alert-type' => 'success'];
+        return to_route('inactive.vendor')->with($notifiction);
     }
 
     public function logout(Request $request): RedirectResponse
