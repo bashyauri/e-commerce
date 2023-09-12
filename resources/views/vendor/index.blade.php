@@ -5,7 +5,7 @@
 @endphp
 
 <div class="page-content">
-    @if (auth()->user()->status === 'active')
+    @if (auth()->user()->status === 'active' && auth()->user()->role=='vendor')
 
     <h4>Vendor account is<span class="text-success"> Active</span></h4>
     @else
