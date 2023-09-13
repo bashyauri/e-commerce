@@ -1,5 +1,8 @@
 <?php
 
+use App\Models\Brand;
+use App\Models\Category;
+use App\Models\SubCategory;
 use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
@@ -13,6 +16,31 @@ return new class extends Migration
     {
         Schema::create('products', function (Blueprint $table) {
             $table->id();
+            $table->foreignIdFor(Brand::class)->constrained()->onDelete('cascade');
+            $table->foreignIdFor(Category::class)->constrained()->onDelete('cascade');
+            $table->foreignIdFor(SubCategory::class)->constrained()->onDelete('cascade');
+
+            $table->string('product_name');
+            $table->string('product_slug');
+            $table->string('product_code');
+            $table->string('product_qty');
+            $table->string('product_tags');
+            $table->string('product_size')->nullable();
+            $table->string('product_color')->nullable();
+            $table->string('selling_price')->nullable();
+            $table->string('discount_price')->nullable();
+            $table->text('short_descp');
+            $table->text('long_descp');
+            $table->string('product_thumbnail');
+            $table->string('vendor_id')->nullable();
+            $table->string('hot_deals')->nullable();
+            $table->string('featured')->nullable();
+            $table->string('special_offer')->nullable();
+            $table->string('special_deals')->nullable();
+            $table->string('status')->default(0);
+
+
+
             $table->timestamps();
         });
     }
