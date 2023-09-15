@@ -10,7 +10,7 @@ use Image;
 
 class ProductController extends Controller
 {
-    public function allProducts(): View
+    public function allProduct(): View
     {
         $products = Product::latest()->get();
         return view('backend.product.all-product', ['products' => $products]);
