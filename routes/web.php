@@ -3,6 +3,7 @@
 use App\Http\Controllers\AdminController;
 use App\Http\Controllers\Backend\BrandController;
 use App\Http\Controllers\Backend\CategoryController;
+use App\Http\Controllers\Backend\ProductController;
 use App\Http\Controllers\Backend\SubCategoryController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\UserController;
@@ -111,5 +112,10 @@ Route::middleware(['auth', 'role:admin'])->group(function () {
         Route::get('/active/vendor-details/{vendor}', 'activeVendorDetails')->name('active.vendor-details');
         Route::patch('/activate/vendor/{vendor}', 'activateVendor')->name('activate.vendor');
         Route::patch('/deactivate/vendor/{vendor}', 'deactivateVendor')->name('deactivate.vendor');
+    });
+    Route::controller(ProductController::class)->group(function () {
+        // All product routes
+        Route::get('/all/product', 'allProduct')->name('all.product');
+        Route::get('/add/product', 'addProduct')->name('add.product');
     });
 });
