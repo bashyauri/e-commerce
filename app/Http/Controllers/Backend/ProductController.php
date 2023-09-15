@@ -15,4 +15,8 @@ class ProductController extends Controller
         $products = Product::latest()->get();
         return view('backend.product.all-product', ['products' => $products]);
     }
+    public function addProduct(): View
+    {
+        return view('backend.product.add-product');
+    }
 }

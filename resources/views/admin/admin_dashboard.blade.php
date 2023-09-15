@@ -12,6 +12,8 @@
 	<link href="{{ asset('adminbackend/assets/plugins/simplebar/css/simplebar.css') }}" rel="stylesheet" />
 	<link href="{{ asset('adminbackend/assets/plugins/perfect-scrollbar/css/perfect-scrollbar.css') }}" rel="stylesheet" />
 	<link href="{{ asset('adminbackend/assets/plugins/metismenu/css/metisMenu.min.css') }}" rel="stylesheet" />
+
+    <link href=" {{ asset('adminbackend/assets/plugins/input-tags/css/tagsinput.css') }}" rel="stylesheet" />
 	<!-- loader-->
 	<link href="{{ asset('adminbackend/assets/css/pace.min.css') }}" rel="stylesheet" />
 	<script src="{{ asset('adminbackend/assets/js/pace.min.js') }}"></script>
@@ -74,6 +76,8 @@
 	<script src="{{ asset('adminbackend/assets/plugins/sparkline-charts/jquery.sparkline.min.js') }}"></script>
 	<script src="{{ asset('adminbackend/assets/plugins/jquery-knob/excanvas.js') }}"></script>
 	<script src="{{ asset('adminbackend/assets/plugins/jquery-knob/jquery.knob.js') }}"></script>
+
+    <script src="{{ asset('adminbackend/assets/plugins/input-tags/js/tagsinput.js') }}"></script>
 	  <script>
 		  $(function() {
 			  $(".knob").knob();
@@ -125,6 +129,13 @@
 <script src="https://cdn.jsdelivr.net/npm/sweetalert2@10"></script>
 
  <script src="{{ asset('adminbackend/assets/js/code.js') }}"></script>
+ <script src='https://cdn.tiny.cloud/1/vdqx2klew412up5bcbpwivg1th6nrh3murc6maz8bukgos4v/tinymce/5/tinymce.min.js' referrerpolicy="origin">
+ </script>
+ <script>
+     tinymce.init({
+       selector: '#mytextarea'
+     });
+ </script>
 </body>
 
 </html>
