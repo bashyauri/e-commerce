@@ -59,7 +59,8 @@
                 <img src="" id="mainThumbnail" />
                 <div class="mb-3">
                     <label for="inputProductTitle" class="form-label">Multiple Images</label>
-                    <input name="images[]" class="form-control" type="file" id="formFileMultiple" multiple="">
+                    <input name="images[]" class="form-control" type="file" id="images" multiple="">
+                    <div class="row" id="image_preview"></div>
                 </div>
 
                 </div>
@@ -177,6 +178,34 @@
 
 
 <script type="text/javascript">
+
+
+ $(document).ready(function(){
+  $('#images').on('change', function(){ //on file input change
+     if (window.File && window.FileReader && window.FileList && window.Blob) //check File API supported browser
+     {
+         var data = $(this)[0].files; //this file data
+
+         $.each(data, function(index, file){ //loop though each file
+             if(/(\.|\/)(gif|jpe?g|png)$/i.test(file.type)){ //check supported file type
+                 var fRead = new FileReader(); //new filereader
+                 fRead.onload = (function(file){ //trigger function on successful read
+                 return function(e) {
+                     var img = $('<img/>').addClass('thumb').attr('src', e.target.result) .width(100)
+                 .height(80); //create image element
+                     $('#image_preview').append(img); //append image to output element
+                 };
+                 })(file);
+                 fRead.readAsDataURL(file); //URL representing the file's data.
+             }
+         });
+
+     }else{
+         alert("Your browser doesn't support File API!"); //if File API is absent
+     }
+  });
+ });
+
 function mainThumbnailUrl(input) {
     if(input.files && input.files[0]){
         let reader = new FileReader();
