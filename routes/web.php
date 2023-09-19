@@ -103,6 +103,7 @@ Route::middleware(['auth', 'role:admin'])->group(function () {
         Route::get('/edit/subcategory/{id}', 'editSubCategory')->name('edit.subcategory');
         Route::post('/update/subcategory/', 'updateSubCategory')->name('update.subcategory');
         Route::delete('/delete/subcategory/{subcategory}', 'deleteSubCategory')->name('delete.subcategory');
+        Route::get('/subcategory/ajax/{category_id}', 'getSubCategory');
     });
     Route::controller(AdminController::class)->group(function () {
         // All Active and Inactive Vendors

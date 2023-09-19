@@ -8,6 +8,7 @@ use App\Http\Requests\Admin\UpdateSubCategoryRequest;
 use App\Models\Category;
 use App\Models\SubCategory;
 use Illuminate\Contracts\View\View;
+use Illuminate\Http\JsonResponse;
 use Illuminate\Http\RedirectResponse;
 
 
@@ -39,6 +40,12 @@ class SubCategoryController extends Controller
 
         $notifiction = ['message' => 'Subcategory Created Successfully !', 'alert-type' => 'success'];
         return redirect()->route('all.subcategory')->with($notifiction);
+    }
+    public function getSubCategory($category_id): JsonResponse
+    {
+
+        $subcat = SubCategory::where('category_id', $category_id)->orderBy('subcategory_name', 'ASC')->get();
+        return response()->json($subcat);
     }
     public function editSubCategory(string $id): View
     {

@@ -112,9 +112,8 @@
                         <label for="inputCollection" class="form-label">Product SubCategory</label>
                         <select name="sub_category_id" class="form-select" id="inputCollection">
                             <option></option>
-                            <option value="1">One</option>
-                            <option value="2">Two</option>
-                            <option value="3">Three</option>
+
+
                           </select>
                       </div>
                       <div class="col-12">
@@ -247,7 +246,38 @@ function mainThumbnailUrl(input) {
             },
         });
     });
+    $(document).ready(function(){
+
+        $('select[name="category_id"]').on('change', function(){
+
+            var category_id = $(this).val();
+
+            if (category_id) {
+                $.ajax({
+                    url: "{{ url('/subcategory/ajax') }}/"+category_id,
+                    type: "GET",
+                    dataType:"json",
+                    success:function(data){
+
+                        $('select[name="sub_category_id"]').html('');
+                        var d =$('select[name="sub_category_id"]').empty();
+                        $.each(data, function(key, value){
+                            $('select[name="sub_category_id"]').append('<option value="'+ value.id + '">' + value.subcategory_name + '</option>');
+                        });
+                    },
+
+                });
+            } else {
+                alert('danger');
+            }
+        });
+    });
+
+
 </script>
+
+
+
 
 
 
