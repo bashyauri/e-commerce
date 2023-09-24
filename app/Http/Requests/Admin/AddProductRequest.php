@@ -25,6 +25,7 @@ class AddProductRequest extends FormRequest
             'brand_id' => ['required'],
             'product_name' => ['required'],
             'short_descp' => ['required'],
+            'long_descp' => ['nullable'],
             'sub_category_id' => ['required'],
             'images' => ['required'],
             'selling_price' => ['required'],
@@ -40,7 +41,7 @@ class AddProductRequest extends FormRequest
             'special_offer' => ['nullable'],
             'special_deals' => ['nullable'],
             'vendor_id' => ['required'],
-            'status' => ['nullable'],
+
             'product_thumbnail' => ['required', 'mimes:png,jpg', 'max:5024'],
         ];
     }
