@@ -51,17 +51,41 @@
                 <td>{{ $item->product_name }}</td>
                 <td>{{ $item->selling_price }}</td>
                 <td>{{ $item->product_qty }}</td>
-                <td>{{ $item->discount_price }}</td>
-                <td>{{ $item->status }}</td>
+                <td>
+                    @if($item->discount_price == NULL)
+                    <span class="badge rounded-pill bg-info">No Discount</span>
+                    @else
+                    @php
+                    $amount = $item->selling_price - $item->discount_price;
+                    $discount = ($amount/$item->selling_price) * 100;
+                    @endphp
+                <span class="badge rounded-pill bg-danger"> {{ round($discount) }}%</span>
+                    @endif
+
+                </td>
+                <td>@if ($item->status === '1')
+                    <span class="badge rounded-pill bg-success">Active</span>
+                    @else
+                    <span class="badge rounded-pill bg-danger">InActive</span>
+
+                @endif</td>
 
 				<td>
 
     <form action="{{ route('delete.category',$item->id) }}" method="Post">
-        <a class="btn btn-primary" href="{{ route('edit.category',$item->id) }}">Edit</a>
+        <a class="btn btn-primary" href="{{ route('edit.category',$item->id) }}" title="Edit Data"><i class="fa fa-pencil"></i></a>
         @csrf
         @method('DELETE')
-        <button type="submit" class="btn btn-danger" id="delete" >Delete</button>
+        <button type="submit" class="btn btn-danger" id="delete" title="Delete Data" ><i class="fa fa-trash"></i></button>
+        <a class="btn btn-secondary" href="{{ route('edit.category',$item->id) }}" title="View Data"><i class="fa fa-eye"></i></a>
+
+        @if ($item->status === '1')
+        <a class="btn btn-success" href="{{ route('edit.category',$item->id) }}" title="Active"><i class="fa-solid fa-thumbs-up"></i></a>
+        @else
+        <a class="btn btn-danger" href="{{ route('edit.category',$item->id) }}" title="Inactive"><i class="fa-solid fa-thumbs-down"></i></a>
+        @endif
     </form>
+
 
 				</td>
 			</tr>
