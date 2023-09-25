@@ -22,6 +22,15 @@
       <div class="card-body p-4">
           <h5 class="card-title">Add New Product</h5>
           <hr/>
+          @if ($errors->any())
+    <div class="alert alert-danger">
+        <ul>
+            @foreach ($errors->all() as $error)
+                <li>{{ $error }}</li>
+            @endforeach
+        </ul>
+    </div>
+@endif
         <form method="post" id="myForm" action="{{route('store.product')}}" enctype="multipart/form-data">
             @csrf
            <div class="form-body mt-4">
@@ -199,7 +208,7 @@
          var data = $(this)[0].files; //this file data
 
          $.each(data, function(index, file){ //loop though each file
-             if(/(\.|\/)(gif|jpe?g|png)$/i.test(file.type)){ //check supported file type
+             if(/(\.|\/)(gif|jpe?g|png|webp)$/i.test(file.type)){ //check supported file type
                  var fRead = new FileReader(); //new filereader
                  fRead.onload = (function(file){ //trigger function on successful read
                  return function(e) {

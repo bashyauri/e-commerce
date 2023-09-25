@@ -42,7 +42,7 @@ class AddProductRequest extends FormRequest
             'special_deals' => ['nullable'],
             'vendor_id' => ['required'],
 
-            'product_thumbnail' => ['required', 'mimes:png,jpg', 'max:5024'],
+            'product_thumbnail' => ['required', 'mimes:png,jpg,webp', 'max:5024'],
         ];
     }
 }
