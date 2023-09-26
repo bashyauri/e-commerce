@@ -10,7 +10,7 @@
 							<ol class="breadcrumb mb-0 p-0">
 								<li class="breadcrumb-item"><a href="javascript:;"><i class="bx bx-home-alt"></i></a>
 								</li>
-								<li class="breadcrumb-item active" aria-current="page">All Products</li>
+								<li class="breadcrumb-item active" aria-current="page">All Products <span class="badge rounded-pill bg-danger">{{count($products)}}</span></li>
 							</ol>
 						</nav>
 					</div>
@@ -24,6 +24,7 @@
 					</div>
 				</div>
 				<!--end breadcrumb-->
+
 
 				<hr/>
 				<div class="card">
@@ -73,7 +74,7 @@
 				<td>
 
     <form action="{{ route('delete.category',$item->id) }}" method="Post">
-        <a class="btn btn-primary" href="{{ route('edit.category',$item->id) }}" title="Edit Data"><i class="fa fa-pencil"></i></a>
+        <a class="btn btn-primary" href="{{ route('edit.product',$item->id) }}" title="Edit Data"><i class="fa fa-pencil"></i></a>
         @csrf
         @method('DELETE')
         <button type="submit" class="btn btn-danger" id="delete" title="Delete Data" ><i class="fa fa-trash"></i></button>
