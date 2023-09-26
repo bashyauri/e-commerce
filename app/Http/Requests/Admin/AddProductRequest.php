@@ -33,6 +33,7 @@ class AddProductRequest extends FormRequest
             'product_qty' => ['required'],
             'product_tags' => ['string', 'nullable'],
             'product_color' => ['string', 'nullable'],
+            'product_size' => ['nullable'],
             'discount_price' => ['nullable'],
             'long_dscp' => ['nullable'],
             'category_id' => ['required'],

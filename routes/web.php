@@ -119,5 +119,7 @@ Route::middleware(['auth', 'role:admin'])->group(function () {
         Route::get('/all/product', 'allProduct')->name('all.product');
         Route::get('/add/product', 'addProduct')->name('add.product');
         Route::post('/add/product', 'storeProduct')->name('store.product');
+        Route::get('/edit/product/{product}', 'editProduct')->name('edit.product');
+        Route::patch('/update/product/{id}', 'updateProduct')->name('update.product');
     });
 });
