@@ -31,7 +31,7 @@
         </ul>
     </div>
 @endif
-<form id="myForm" action="{{ route('update.product', $product->id) }}" method="POST" enctype="multipart/form-data">
+<form id="myForm" action="{{ route('update.product', $product->id) }}" method="POST">
     @csrf
     @method('PATCH')
            <div class="form-body mt-4">
@@ -178,7 +178,7 @@
                     <hr>
                       <div class="col-12">
                           <div class="d-grid">
-                             <button type="submit" class="btn btn-primary">Save Product</button>
+                             <button type="submit" class="btn btn-primary">Update Product</button>
                           </div>
                       </div>
                   </div>
