@@ -102,7 +102,7 @@
                         <select name="brand_id" class="form-select" id="inputProductType">
                             <option></option>
                             @foreach ($brands as $brand)
-                            <option value="{{$brand->id}}">{{$brand->brand_name}}</option>
+                            <option value="{{$brand->id}}" {{$brand->id == $product->brand_id ? "selected" : ""}}>{{$brand->brand_name}}</option>
                             @endforeach
 
 
@@ -114,7 +114,7 @@
                         <select name="category_id" class="form-select" id="inputVendor">
                             <option></option>
                             @foreach ($categories as $category)
-                            <option value="{{$category->id}}">{{$category->category_name}}</option>
+                            <option value="{{$category->id}}" {{$category->id == $product->category_id ? "selected" : ""}}>{{$category->category_name}}</option>
                             @endforeach
 
 
@@ -126,7 +126,7 @@
                             <option></option>
                             <option></option>
                             @foreach ($subcategories as $subcategory)
-                            <option value="{{$subcategory->id}}">{{$subcategory->category_name}}</option>
+                            <option value="{{$subcategory->id}}" {{$subcategory->id == $product->sub_category_id ? "selected" : ""}}>{{$subcategory->subcategory_name}}</option>
                             @endforeach
 
                           </select>
@@ -136,7 +136,7 @@
                         <select name="vendor_id" class="form-select" id="inputCollection">
                             <option></option>
                             @foreach ($activeVendors as $vendor)
-                            <option value="{{$vendor->id}}">{{$vendor->name}}</option>
+                            <option value="{{$vendor->id}}" {{$vendor->id == $product->vendor_id ? "selected" : ""}}>{{$vendor->name}}</option>
                             @endforeach
 
 
@@ -146,14 +146,14 @@
                 <div class="row g-3">
                     <div class="col-md-6">
                         <div class="form-check">
-                            <input class="form-check-input" name="hot_deals" type="checkbox" value="1" id="flexCheckDefault">
+                            <input class="form-check-input" name="hot_deals" type="checkbox" value="1" {{$product->hot_deals == '1' ? 'checked' : ''}} id="flexCheckDefault">
 
                             <label class="form-check-label" for="flexCheckDefault">Hot deals</label>
                         </div>
                     </div>
                     <div class="col-md-6">
                         <div class="form-check">
-                            <input class="form-check-input" name="featured" type="checkbox" value="1" id="flexCheckDefault">
+                            <input class="form-check-input" name="featured" type="checkbox" value="1" {{$product->featured == '1' ? 'checked' : ''}} id="flexCheckDefault">
 
                             <label class="form-check-label" for="flexCheckDefault">Featured</label>
                         </div>
@@ -161,14 +161,14 @@
 
                     <div class="col-md-6">
                         <div class="form-check">
-                            <input class="form-check-input" name="special_offer" type="checkbox" value="1" id="flexCheckDefault">
+                            <input class="form-check-input" name="special_offer" type="checkbox" value="1" {{$product->special_offer == '1' ? 'checked' : ''}} id="flexCheckDefault">
 
                             <label class="form-check-label" for="flexCheckDefault">Special Offer</label>
                         </div>
                     </div>
                     <div class="col-md-6">
                         <div class="form-check">
-                            <input class="form-check-input" name="special_deals" type="checkbox" value="1" id="flexCheckDefault">
+                            <input class="form-check-input" name="special_deals" type="checkbox" value="1" {{$product->special_deals == '1' ? 'checked' : ''}} id="flexCheckDefault">
 
                             <label class="form-check-label" for="flexCheckDefault">Special Deals</label>
                         </div>
