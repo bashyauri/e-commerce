@@ -27,7 +27,7 @@ class UpdateProductRequest extends FormRequest
             'short_descp' => ['required'],
             'long_descp' => ['nullable'],
             'sub_category_id' => ['required'],
-            'images' => ['required'],
+            'images' => ['nullable'],
             'selling_price' => ['required'],
             'product_code' => ['required'],
             'product_qty' => ['required'],
@@ -43,7 +43,7 @@ class UpdateProductRequest extends FormRequest
             'special_deals' => ['nullable'],
             'vendor_id' => ['required'],
 
-            'product_thumbnail' => ['required', 'mimes:png,jpg,webp', 'max:5024'],
+            'product_thumbnail' => ['nullable', 'mimes:png,jpg,webp', 'max:5024'],
         ];
     }
 }

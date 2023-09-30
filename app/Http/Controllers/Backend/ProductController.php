@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Backend;
 
 use App\Http\Controllers\Controller;
 use App\Http\Requests\Admin\AddProductRequest;
+use App\Http\Requests\Admin\UpdateProductRequest;
 use App\Models\Product;
 use App\Models\Brand;
 use App\Models\Category;
@@ -93,13 +94,10 @@ class ProductController extends Controller
             ['brands' => $brands, 'categories' => $categories, 'activeVendors' => $activeVendors, 'product' => $product, 'subcategories' => $subcategories]
         );
     }
-    public function updateProduct(AddProductRequest $request, Product $product): RedirectResponse
+    public function updateProduct(UpdateProductRequest $request, Product $product): RedirectResponse
     {
         $data = $request->validated();
 
-        $image = $request->file('product_thumbnail');
-        $nameGen = hexdec(uniqid()) . '.' . $image->getClientOriginalExtension();
-        Image::make($image)->resize(800, 800)->save('uploads/product_images/thumbnails/' . $nameGen);
 
         $product->update([
             'brand_id' => $data['brand_id'],
