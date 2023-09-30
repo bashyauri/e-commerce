@@ -190,8 +190,29 @@
     </form>
       </div>
   </div>
+  {{-- Starts Image Thumbnail --}}
+  <h6 class="mb-0 text-uppercase">Update Image Thumbnail</h6>
+  <hr>
+  <div class="card">
+    <div class="card-body">
+        <form  action="{{ route('update.product', $product->id) }}" method="POST" enctype="multipart/form-data">
+                @csrf
+                @method('PATCH')
+            <div class="mb-3">
+                <label for="formFile" class="form-label">Select Thumbnail</label>
+                <input class="form-control" name="product_thumbnail" type="file" id="formFile">
+            </div>
+            <div class="mb-3">
 
+                <img src="{{asset($product->product_thumbnail) }}" style="width:100px;height:100px;">
+            </div>
+            <button type="submit" class="btn btn-primary">Update Thumbnail</button>
+        </form>
+    </div>
 </div>
+</div>
+{{-- End Image Thumbnail --}}
+
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.4/jquery.min.js"></script>
 
 
