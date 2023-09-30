@@ -198,13 +198,14 @@
         <form  action="{{ route('update.product-thumbnail', $product->id) }}" method="POST" enctype="multipart/form-data">
                 @csrf
                 @method('PATCH')
+                <input type="hidden" name="old_image" value="{{$product->product_thumbnail}}" />
             <div class="mb-3">
                 <label for="formFile" class="form-label">Select Thumbnail</label>
-                <input class="form-control" name="product_thumbnail" type="file" id="formFile">
+                <input class="form-control" name="product_thumbnail" type="file" id="formFile" onChange="mainThumbnailUrl(this)">
             </div>
             <div class="mb-3">
 
-                <img src="{{asset($product->product_thumbnail) }}" style="width:100px;height:100px;">
+                <img src="{{asset($product->product_thumbnail) }}" style="width:100px;height:100px;" id="mainThumbnail">
             </div>
             <button type="submit" class="btn btn-primary">Update Thumbnail</button>
         </form>

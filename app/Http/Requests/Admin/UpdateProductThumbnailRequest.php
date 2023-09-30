@@ -23,6 +23,7 @@ class UpdateProductThumbnailRequest extends FormRequest
     {
         return [
             'product_thumbnail' => ['required', 'mimes:png,jpg,webp', 'max:5024'],
+            'old_image' => ['required'],
         ];
     }
 }

@@ -120,7 +120,7 @@ Route::middleware(['auth', 'role:admin'])->group(function () {
         Route::get('/add/product', 'addProduct')->name('add.product');
         Route::post('/add/product', 'storeProduct')->name('store.product');
         Route::get('/edit/product/{product}', 'editProduct')->name('edit.product');
-        Route::patch('/update/product/{id}', 'updateProduct')->name('update.product');
-        Route::patch('/update/product-thumbnail/{product}', 'updateProductThumbnail')->name('update.product-thumbnil');
+        Route::patch('/update/product/{product}', 'updateProduct')->name('update.product');
+        Route::patch('/update/product-thumbnail/{product}', 'updateProductThumbnail')->name('update.product-thumbnail');
     });
 });

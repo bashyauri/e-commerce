@@ -113,8 +113,13 @@ class ProductController extends Controller
             'long_descp' => $data['long_descp'],
             'selling_price' => $data['selling_price'],
             'vendor_id' => $data['vendor_id'],
+            'discount_price' => $data['discount_price'],
             'category_id' => $data['category_id'],
             'sub_category_id' => $data['sub_category_id'],
+            'special_deals' => $data['special_deals'] ?? NULL,
+            'hot_deals' => $data['hot_deals'] ?? NULL,
+            'special_offer' => $data['special_offer'] ?? NULL,
+            'featured' => $data['featured'] ?? NULL,
             'status' => 1,
             'created_at' => Carbon::now()
 
@@ -125,5 +130,28 @@ class ProductController extends Controller
     }
     public function updateProductThumbnail(UpdateProductThumbnailRequest $request, Product $product): RedirectResponse
     {
+
+        $data = $request->validated();
+
+        $oldImage = $data['old_image'];
+
+        $image = $request->file('product_thumbnail');
+
+        $nameGen = hexdec(uniqid()) . '.' . $image->getClientOriginalExtension();
+
+        Image::make($image)->resize(800, 800)->save('uploads/product_images/thumbnails/' . $nameGen);
+        $savedUrl = 'uploads/product_images/thumbnails/' . $nameGen;
+
+        if (file_exists($oldImage)) {
+            unlink($oldImage);
+        }
+
+        $product->update([
+            'product_thumbnail' => $savedUrl,
+            'updated_at' => Carbon::now()
+        ]);
+        $notifiction = ['message' => 'Product Updated With Image', 'alert-type' => 'success'];
+
+        return to_route('all.product')->with($notifiction);
     }
 }
