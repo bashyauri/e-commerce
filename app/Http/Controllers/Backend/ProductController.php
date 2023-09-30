@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Backend;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\Admin\AddProductRequest;
 use App\Http\Requests\Admin\UpdateProductRequest;
+use App\Http\Requests\Admin\UpdateProductThumbnailRequest;
 use App\Models\Product;
 use App\Models\Brand;
 use App\Models\Category;
@@ -121,5 +122,8 @@ class ProductController extends Controller
 
         $notifiction = ['message' => 'Product Updated Without Image', 'alert-type' => 'success'];
         return redirect()->route('all.product')->with($notifiction);
+    }
+    public function updateProductThumbnail(UpdateProductThumbnailRequest $request, Product $product): RedirectResponse
+    {
     }
 }
