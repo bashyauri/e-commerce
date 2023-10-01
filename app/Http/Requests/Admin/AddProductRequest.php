@@ -27,7 +27,7 @@ class AddProductRequest extends FormRequest
             'short_descp' => ['required'],
             'long_descp' => ['nullable'],
             'sub_category_id' => ['required'],
-            'images' => ['required'],
+            'images' => ['required', 'mimes:png,jpg,webp', 'max:5024'],
             'selling_price' => ['required'],
             'product_code' => ['required'],
             'product_qty' => ['required'],

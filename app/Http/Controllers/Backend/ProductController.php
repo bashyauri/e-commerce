@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Backend;
 
 use App\Http\Controllers\Controller;
 use App\Http\Requests\Admin\AddProductRequest;
+use App\Http\Requests\Admin\UpdateImageRequest;
 use App\Http\Requests\Admin\UpdateProductRequest;
 use App\Http\Requests\Admin\UpdateProductThumbnailRequest;
 use App\Models\Product;
@@ -13,8 +14,10 @@ use App\Models\Image as ModelsImage;
 use App\Models\SubCategory;
 use App\Models\User;
 use Carbon\Carbon;
+
 use Illuminate\Contracts\View\View;
 use Illuminate\Http\RedirectResponse;
+use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use Image;
 
@@ -90,9 +93,18 @@ class ProductController extends Controller
         $categories = Category::latest()->get();
         $subcategories = SubCategory::latest()->get();
         Category::latest()->get();
+        $images = ModelsImage::where(['product_id' => $id])->get();
         return view(
             'backend.product.edit-product',
-            ['brands' => $brands, 'categories' => $categories, 'activeVendors' => $activeVendors, 'product' => $product, 'subcategories' => $subcategories]
+            [
+                'brands' => $brands,
+                'categories' => $categories,
+                'activeVendors' => $activeVendors,
+                'product' => $product,
+                'subcategories' => $subcategories,
+                'images' => $images,
+            ]
+
         );
     }
     public function updateProduct(UpdateProductRequest $request, Product $product): RedirectResponse
@@ -153,5 +165,25 @@ class ProductController extends Controller
         $notifiction = ['message' => 'Product Updated With Image', 'alert-type' => 'success'];
 
         return to_route('all.product')->with($notifiction);
+    }
+    public function updateProductImage(UpdateImageRequest $request, ModelsImage $image)
+    {
+
+        $data = $request->validated();
+        $img = $data['photo_name'];
+
+
+        unlink($image->photo_name);
+        $productImage = hexdec(uniqid()) . '.' . $img->getClientOriginalExtension();
+        Image::make($img)->resize(800, 800)->save('uploads/product_images/images/' . $productImage);
+        $imageUrl = 'uploads/product_images/images/' . $productImage;
+        $image->update([
+            'product_id' => $image->product_id,
+            'photo_name' => $imageUrl,
+            'created_at' => Carbon::now()
+        ]);
+        $notifiction = ['message' => 'Image Updated Successfully', 'alert-type' => 'success'];
+
+        return redirect()->back()->with($notifiction);
     }
 }

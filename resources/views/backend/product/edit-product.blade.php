@@ -43,7 +43,7 @@
 
                 <div class="form-group mb-3">
                     <label for="inputProductTitle" class="form-label">Product Name</label>
-                    <input type="text" name="product_name" class="form-control" id="inputProductTitle" value={{$product->product_name}}>
+                    <input type="text" name="product_name" class="form-control" value={{$product->product_name}}>
                 </div>
 
                 <div class="mb-3">
@@ -211,8 +211,52 @@
         </form>
     </div>
 </div>
-</div>
 {{-- End Image Thumbnail --}}
+{{-- Start Images --}}
+<h6 class="mb-0 text-uppercase">Update Images</h6>
+  <hr>
+<div class="card">
+							<div class="card-body">
+								<table class="table mb-0 table-striped">
+									<thead>
+										<tr>
+											<th scope="col">#</th>
+											<th scope="col">Image</th>
+											<th scope="col">Change Image</th>
+											<th scope="col">Delete</th>
+										</tr>
+									</thead>
+									<tbody>
+
+                                            @foreach ($images as $index => $image)
+                                            <form  action="{{ route('update.product-image', $image->id) }}" method="POST" enctype="multipart/form-data">
+                                                @csrf
+                                                @method('PUT')
+                                                <tr>
+                                                    <th scope="row">{{$index +1}}</th>
+                                                    <td><img src="{{asset($image->photo_name)}}" alt="" style="width:70;height:40px"></td>
+                                                    <td><input type="file" class="form-group" name="photo_name"  ></td>
+                                                    <td>
+
+                                                        <button type="submit" class="btn btn-primary">Update Image</button>
+                                                            <a class="btn btn-primary" href="">Delete</a>
+
+
+                                                    </td>
+                                                </tr>
+                                            </form>
+
+                                            @endforeach
+
+
+                                        </form>
+									</tbody>
+								</table>
+							</div>
+						</div>
+</div>
+{{-- End Images --}}
+
 
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.4/jquery.min.js"></script>
 
