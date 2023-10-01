@@ -194,7 +194,23 @@ class ProductController extends Controller
             $image->delete();
             unlink($image->photo_name);
         });
-        $notifiction = ['message' => 'Image Deleted Successfully !', 'alert-type' => 'danger'];
+        $notifiction = ['message' => 'Image Deleted Successfully !', 'alert-type' => 'success'];
+        return redirect()->back()->with($notifiction);
+    }
+    public function activeProduct(Product $product): RedirectResponse
+    {
+        $product->update([
+            'status' => '1',
+        ]);
+        $notifiction = ['message' => 'Product status activated successfully!', 'alert-type' => 'success'];
+        return redirect()->back()->with($notifiction);
+    }
+    public function inactiveProduct(Product $product): RedirectResponse
+    {
+        $product->update([
+            'status' => '0',
+        ]);
+        $notifiction = ['message' => 'Product status deactivated successfully!', 'alert-type' => 'success'];
         return redirect()->back()->with($notifiction);
     }
 }

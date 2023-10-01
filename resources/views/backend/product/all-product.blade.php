@@ -81,9 +81,9 @@
         <a class="btn btn-secondary" href="{{ route('edit.category',$item->id) }}" title="View Data"><i class="fa fa-eye"></i></a>
 
         @if ($item->status === '1')
-        <a class="btn btn-success" href="{{ route('edit.category',$item->id) }}" title="Active"><i class="fa-solid fa-thumbs-up"></i></a>
+        <a class="btn btn-danger" href="{{ route('inactive.product',$item->id) }}" title="Inactive"><i class="fa-solid fa-thumbs-down"></i></a>
         @else
-        <a class="btn btn-danger" href="{{ route('edit.category',$item->id) }}" title="Inactive"><i class="fa-solid fa-thumbs-down"></i></a>
+        <a class="btn btn-success" href="{{ route('active.product',$item->id) }}" title="Active"><i class="fa-solid fa-thumbs-up"></i></a>
         @endif
     </form>
 
