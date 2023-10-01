@@ -228,28 +228,31 @@
 									</thead>
 									<tbody>
 
-                                            @foreach ($images as $index => $image)
-                                            <form  action="{{ route('update.product-image', $image->id) }}" method="POST" enctype="multipart/form-data">
-                                                @csrf
-                                                @method('PUT')
-                                                <tr>
-                                                    <th scope="row">{{$index +1}}</th>
-                                                    <td><img src="{{asset($image->photo_name)}}" alt="" style="width:70;height:40px"></td>
-                                                    <td><input type="file" class="form-group" name="photo_name"  ></td>
-                                                    <td>
+                                        @foreach ($images as $index => $image)
+                                        <tr>
+                                            <th scope="row">{{ $index + 1 }}</th>
+                                            <td><img src="{{ asset($image->photo_name) }}" alt="" style="width: 70px; height: 40px;"></td>
+                                            <td>
+                                                <form action="{{ route('update.product-image', $image->id) }}" method="POST" enctype="multipart/form-data">
+                                                    @csrf
+                                                    @method('PUT')
+                                                    <input type="file" class="form-group" name="photo_name">
+                                                    <button type="submit" class="btn btn-primary">Update Image</button>
+                                                </form>
+                                            </td>
+                                            <td>
+                                                <form action="{{ route('delete.product-image', $image->id) }}" method="POST">
+                                                    @csrf
+                                                    @method('DELETE')
+                                                    <button type="submit" class="btn btn-danger" id="delete" title="Delete Image">Delete</button>
+                                                </form>
+                                            </td>
+                                        </tr>
+                                    @endforeach
 
-                                                        <button type="submit" class="btn btn-primary">Update Image</button>
-                                                            <a class="btn btn-primary" href="">Delete</a>
 
 
-                                                    </td>
-                                                </tr>
-                                            </form>
 
-                                            @endforeach
-
-
-                                        </form>
 									</tbody>
 								</table>
 							</div>

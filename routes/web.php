@@ -123,5 +123,6 @@ Route::middleware(['auth', 'role:admin'])->group(function () {
         Route::patch('/update/product/{product}', 'updateProduct')->name('update.product');
         Route::patch('/update/product-thumbnail/{product}', 'updateProductThumbnail')->name('update.product-thumbnail');
         Route::put('/update/product-image/{image}', 'updateProductImage')->name('update.product-image');
+        Route::delete('/delete/product-image/{image}', 'deleteProductImage')->name('delete.product-image');
     });
 });

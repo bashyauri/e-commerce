@@ -186,4 +186,15 @@ class ProductController extends Controller
 
         return redirect()->back()->with($notifiction);
     }
+    public function deleteProductImage(ModelsImage $image): RedirectResponse
+    {
+
+
+        DB::transaction(function () use ($image) {
+            $image->delete();
+            unlink($image->photo_name);
+        });
+        $notifiction = ['message' => 'Image Deleted Successfully !', 'alert-type' => 'success'];
+        return redirect()->back()->with($notifiction);
+    }
 }
