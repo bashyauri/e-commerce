@@ -194,7 +194,7 @@ class ProductController extends Controller
             $image->delete();
             unlink($image->photo_name);
         });
-        $notifiction = ['message' => 'Image Deleted Successfully !', 'alert-type' => 'success'];
+        $notifiction = ['message' => 'Image Deleted Successfully !', 'alert-type' => 'danger'];
         return redirect()->back()->with($notifiction);
     }
 }
