@@ -14,11 +14,12 @@ use App\Models\Image as ModelsImage;
 use App\Models\SubCategory;
 use App\Models\User;
 use Carbon\Carbon;
-
+use Exception;
 use Illuminate\Contracts\View\View;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Log;
 use Image;
 
 class ProductController extends Controller
@@ -191,8 +192,8 @@ class ProductController extends Controller
 
 
         DB::transaction(function () use ($image) {
-            $image->delete();
             unlink($image->photo_name);
+            $image->delete();
         });
         $notifiction = ['message' => 'Image Deleted Successfully !', 'alert-type' => 'success'];
         return redirect()->back()->with($notifiction);
@@ -215,15 +216,22 @@ class ProductController extends Controller
     }
     public function deleteProduct(Product $product): RedirectResponse
     {
-        DB::transaction(function () use ($product) {
+        $images = ModelsImage::where('product_id', $product->id)->get();
+        DB::transaction(function () use ($product, $images) {
             unlink($product->product_thumbnail);
             $product->delete();
-            
-            $images = ModelsImage::where('product_id', $product->id)->get();
+
+
+            dd($images);
             foreach ($images as $image) {
-                unlink($image->photo_name);
-                $image->delete();
-                
+
+                try {
+                    unlink($image->photo_name);
+                    $image->delete();
+                } catch (Exception $e) {
+                    // Log or handle the error
+                    Log::info("Failed to delete file: " . $image->photo_name);
+                }
             }
         });
         $notifiction = ['message' => 'Product deleted!', 'alert-type' => 'success'];
