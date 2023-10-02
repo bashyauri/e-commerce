@@ -222,7 +222,7 @@ class ProductController extends Controller
             $product->delete();
 
 
-            dd($images);
+
             foreach ($images as $image) {
 
                 try {
