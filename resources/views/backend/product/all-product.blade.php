@@ -72,20 +72,33 @@
                 @endif</td>
 
 				<td>
-
-    <form action="{{ route('delete.category',$item->id) }}" method="Post">
-        <a class="btn btn-primary" href="{{ route('edit.product',$item->id) }}" title="Edit Data"><i class="fa fa-pencil"></i></a>
-        @csrf
-        @method('DELETE')
-        <button type="submit" class="btn btn-danger" id="delete" title="Delete Data" ><i class="fa fa-trash"></i></button>
-        <a class="btn btn-secondary" href="{{ route('edit.category',$item->id) }}" title="View Data"><i class="fa fa-eye"></i></a>
-
-        @if ($item->status === '1')
-        <a class="btn btn-danger" href="{{ route('inactive.product',$item->id) }}" title="Inactive"><i class="fa-solid fa-thumbs-down"></i></a>
-        @else
-        <a class="btn btn-success" href="{{ route('active.product',$item->id) }}" title="Active"><i class="fa-solid fa-thumbs-up"></i></a>
-        @endif
-    </form>
+                    <div class="d-inline-block">
+                        <a class="btn btn-primary" href="{{ route('edit.product',$item->id) }}" title="Edit Data"><i class="fa fa-pencil"></i></a>
+                        <form class="d-inline" action="{{ route('delete.product',$item->id) }}" method="POST">
+                            @csrf
+                            @method('DELETE')
+                            <button type="submit" class="btn btn-danger" id="delete" title="Delete Data"><i class="fa fa-trash"></i></button>
+                        </form>
+                        <a class="btn btn-secondary" href="{{ route('edit.category',$item->id) }}" title="View Data"><i class="fa fa-eye"></i></a>
+                        @if ($item->status === '1')
+                        <form class="d-inline" action="{{ route('inactive.product',$item->id) }}" method="POST">
+                            @csrf
+                            @method('PATCH')
+                            <button type="submit" class="btn btn-secondary" title="Inactive"><i class="fa-solid fa-thumbs-down"></i></button>
+                        </form>
+                        @else
+                        <form class="d-inline" action="{{ route('active.product',$item->id) }}" method="POST">
+                            @csrf
+                            @method('PATCH')
+                            <button type="submit" class="btn btn-success" title="Active"><i class="fa-solid fa-thumbs-up"></i></button>
+                        </form>
+                        @endif
+                    </div>
+                    
+                </td>
+                <td>
+						
+                </td>
 
 
 				</td>

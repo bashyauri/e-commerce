@@ -213,4 +213,20 @@ class ProductController extends Controller
         $notifiction = ['message' => 'Product status deactivated successfully!', 'alert-type' => 'success'];
         return redirect()->back()->with($notifiction);
     }
+    public function deleteProduct(Product $product): RedirectResponse
+    {
+        DB::transaction(function () use ($product) {
+            unlink($product->product_thumbnail);
+            $product->delete();
+            
+            $images = ModelsImage::where('product_id', $product->id)->get();
+            foreach ($images as $image) {
+                unlink($image->photo_name);
+                $image->delete();
+                
+            }
+        });
+        $notifiction = ['message' => 'Product deleted!', 'alert-type' => 'success'];
+        return redirect()->back()->with($notifiction);
+    }
 }

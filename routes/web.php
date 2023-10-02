@@ -124,7 +124,8 @@ Route::middleware(['auth', 'role:admin'])->group(function () {
         Route::patch('/update/product-thumbnail/{product}', 'updateProductThumbnail')->name('update.product-thumbnail');
         Route::put('/update/product-image/{image}', 'updateProductImage')->name('update.product-image');
         Route::delete('/delete/product-image/{image}', 'deleteProductImage')->name('delete.product-image');
-        Route::get('/inactive/product/{product}', 'inactiveProduct')->name('inactive.product');
-        Route::get('/active/product/{product}', 'activeProduct')->name('active.product');
+        Route::patch('/inactive/product/{product}', 'inactiveProduct')->name('inactive.product');
+        Route::patch('/active/product/{product}', 'activeProduct')->name('active.product');
+        Route::delete('/delete/product/{product}', 'deleteProduct')->name('delete.product');
     });
 });

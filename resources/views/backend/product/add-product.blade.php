@@ -42,11 +42,11 @@
 
                 <div class="form-group mb-3">
                     <label for="inputProductTitle" class="form-label">Product Name</label>
-                    <input type="text" name="product_name" class="form-control" id="inputProductTitle" placeholder="Enter product title">
+                    <input type="text" name="product_name" class="form-control" id="inputProductTitle" placeholder="Enter product title" value="{{ old('product_name') }}">
                 </div>
                 <div class="form-group mb-3">
                     <label for="inputProductTitle" class="form-label">Product Tags</label>
-                    <input type="text" name="product_tags" class="form-control visually-hidden" data-role="tagsinput" value="New Product,Top Product">
+                    <input type="text" name="product_tags" class="form-control visually-hidden" data-role="tagsinput" value="New Product,Top Product" required>
                 </div>
                 <div class="form-group mb-3">
                     <label for="inputProductTitle" class="form-label">Product Size</label>
@@ -73,7 +73,8 @@
                 <img src="" id="mainThumbnail" />
                 <div class="form-group mb-3">
                     <label for="inputProductTitle" class="form-label">Multiple Images</label>
-                    <input name="images[]" class="form-control" type="file" id="images" multiple="">
+                    <input name="images[]" class="form-control" type="file" id="images" multiple accept="image/*" required>
+
                     <div class="row" id="image_preview"></div>
                 </div>
 
