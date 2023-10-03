@@ -25,6 +25,13 @@
     <link rel="stylesheet" href="{{asset('adminbackend/assets/css/semi-dark.css')}}" />
     <link rel="stylesheet" href="{{asset('adminbackend/assets/css/header-colors.css')}}" />
     <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.css" >
+    <!-- DataTable -->
+	<link href="{{ asset('adminbackend/assets/plugins/datatable/css/dataTables.bootstrap5.min.css') }}" rel="stylesheet" />
+    <!-- DataTable-->
+         <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.css" >
+    {{-- Font Awesome --}}
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css"
+     integrity="sha512-z3gLpd7yknf1YoNbCzqRKc4qyor8gaKU1qmn+CShxbuBusANI9QpRohGBreCFkKxLhei6S9CQXFEbbKuqLg0DA==" crossorigin="anonymous" referrerpolicy="no-referrer" />
     <title>Vendor Dashboard</title>
 </head>
 
@@ -171,9 +178,25 @@
         });
     </script>
     <script src="{{asset('adminbackend/assets/js/index.js')}}"></script>
+
+    <!--Datatable-->
+<script src="{{ asset('adminbackend/assets/plugins/datatable/js/jquery.dataTables.min.js') }}"></script>
+<script>
+		$(document).ready(function() {
+			$('#example').DataTable();
+		  } );
+	</script>
+<!--Datatable-->
+<!--app JS-->
+<script src="{{ asset('adminbackend/assets/js/app.js') }}"></script>
+{{-- validate js --}}
+<script src="{{ asset('adminbackend/assets/js/validate.js') }}"></script>
+
+
+<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.js"></script>
     <!--app JS-->
-    <script src="{{asset('adminbackend/assets/js/app.js')}}"></script>
-    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.js"></script>
+
+
 
 <script>
 @if(Session::has('message'))
@@ -197,6 +220,17 @@ break;
 }
 @endif
 </script>
+
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@10"></script>
+
+ <script src="{{ asset('adminbackend/assets/js/code.js') }}"></script>
+ <script src='https://cdn.tiny.cloud/1/vdqx2klew412up5bcbpwivg1th6nrh3murc6maz8bukgos4v/tinymce/5/tinymce.min.js' referrerpolicy="origin">
+ </script>
+ <script>
+     tinymce.init({
+       selector: '#mytextarea'
+     });
+ </script>
 </body>
 
 </html>
