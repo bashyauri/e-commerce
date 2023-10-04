@@ -27,6 +27,17 @@ class VendorProductController extends Controller
     public function allVendorProduct(): View
     {
         $products = Product::where(['vendor_id' => auth()->user()->id])->latest()->get();
-        return view('vendor.backend.all-product', ['products' => $products]);
+        return view('vendor.backend.product.all-product', ['products' => $products]);
+    }
+    public function addVendorProduct(): View
+    {
+
+        $brands = Brand::latest()->get();
+        $categories = Category::latest()->get();
+
+        return view(
+            'vendor.backend.product.add-product',
+            ['brands' => $brands, 'categories' => $categories]
+        );
     }
 }
