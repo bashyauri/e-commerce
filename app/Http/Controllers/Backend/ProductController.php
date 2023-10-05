@@ -60,6 +60,7 @@ class ProductController extends Controller
                 'short_descp' => $data['short_descp'],
                 'long_descp' => $data['long_descp'],
                 'selling_price' => $data['selling_price'],
+                'discount_price' => $data['discount_price'],
                 'product_thumbnail' => $savedUrl,
                 'vendor_id' => $data['vendor_id'],
                 'category_id' => $data['category_id'],

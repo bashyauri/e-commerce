@@ -16,6 +16,7 @@ use App\Models\User;
 use Carbon\Carbon;
 use Exception;
 use Illuminate\Contracts\View\View;
+use Illuminate\Http\JsonResponse;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Log;
@@ -39,5 +40,11 @@ class VendorProductController extends Controller
             'vendor.backend.product.add-product',
             ['brands' => $brands, 'categories' => $categories]
         );
+    }
+    public function getVendorSubCategory($category_id): JsonResponse
+    {
+
+        $subcat = SubCategory::where('category_id', $category_id)->orderBy('subcategory_name', 'ASC')->get();
+        return response()->json($subcat);
     }
 }

@@ -307,7 +307,7 @@ function mainThumbnailUrl(input) {
 
             if (category_id) {
                 $.ajax({
-                    url: "{{ url('/subcategory/ajax') }}/"+category_id,
+                    url: "{{ url('vendor/subcategory/ajax') }}/"+category_id,
                     type: "GET",
                     dataType:"json",
                     success:function(data){
