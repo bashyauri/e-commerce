@@ -28,7 +28,7 @@
             <ul>
                 <li> <a href="{{route('vendor.product') }}"><i class="bx bx-right-arrow-alt"></i>Products</a>
                 </li>
-                <li> <a href="{{route('vendor.add-product')}}"><i class="bx bx-right-arrow-alt"></i>Add Prpduct</a>
+                <li> <a href="{{route('vendor.add-product')}}"><i class="bx bx-right-arrow-alt"></i>Add Product</a>
 
                 </li>
 

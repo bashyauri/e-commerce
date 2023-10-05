@@ -94,14 +94,12 @@
                         </form>
                         @endif
                     </div>
-                    
-                </td>
-                <td>
-						
+
                 </td>
 
 
-				</td>
+
+
 			</tr>
 			@endforeach
 

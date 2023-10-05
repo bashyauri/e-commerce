@@ -13,6 +13,7 @@
     <link href="{{asset('adminbackend/assets/plugins/simplebar/css/simplebar.css')}}" rel="stylesheet" />
     <link href="{{asset('adminbackend/assets/plugins/perfect-scrollbar/css/perfect-scrollbar.css')}}" rel="stylesheet" />
     <link href="{{asset('adminbackend/assets/plugins/metismenu/css/metisMenu.min.css')}}" rel="stylesheet" />
+    <link href=" {{ asset('adminbackend/assets/plugins/input-tags/css/tagsinput.css') }}" rel="stylesheet" />
     <!-- loader-->
     <link href="{{asset('adminbackend/assets/css/pace.min.css')}}" rel="stylesheet" />
     <script src="{{asset('adminbackend/assets/js/pace.min.js')}}"></script>
@@ -26,7 +27,9 @@
     <link rel="stylesheet" href="{{asset('adminbackend/assets/css/header-colors.css')}}" />
     <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.css" >
     <!-- DataTable -->
+	<!-- DataTable -->
 	<link href="{{ asset('adminbackend/assets/plugins/datatable/css/dataTables.bootstrap5.min.css') }}" rel="stylesheet" />
+<!-- DataTable-->
     <!-- DataTable-->
          <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.css" >
     {{-- Font Awesome --}}
@@ -171,6 +174,7 @@
     <script src=" {{asset('adminbackend/assets/plugins/sparkline-charts/jquery.sparkline.min.js')}}"></script>
     <script src=" {{asset('adminbackend/assets/plugins/jquery-knob/excanvas.js')}}"></script>
     <script src=" {{asset('adminbackend/assets/plugins/jquery-knob/jquery.knob.js')}}"></script>
+    <script src="{{ asset('adminbackend/assets/plugins/input-tags/js/tagsinput.js') }}"></script>
 
     <script>
         $(function() {
@@ -181,6 +185,8 @@
 
     <!--Datatable-->
 <script src="{{ asset('adminbackend/assets/plugins/datatable/js/jquery.dataTables.min.js') }}"></script>
+<script src="{{ asset('adminbackend/assets/plugins/datatable/js/dataTables.bootstrap5.min.js') }}"></script>
+
 <script>
 		$(document).ready(function() {
 			$('#example').DataTable();
