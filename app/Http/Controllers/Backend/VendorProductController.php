@@ -83,7 +83,7 @@ class VendorProductController extends Controller
 
 
         $notifiction = ['message' => 'Vendor Product Created Successfully !', 'alert-type' => 'success'];
-        return redirect()->route('vendor.all-product')->with($notifiction);
+        return redirect()->route('vendor.product')->with($notifiction);
     }
     public function getVendorSubCategory($category_id): JsonResponse
     {

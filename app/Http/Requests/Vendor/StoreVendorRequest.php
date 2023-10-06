@@ -41,7 +41,7 @@ class StoreVendorRequest extends FormRequest
             'featured' => ['nullable'],
             'special_offer' => ['nullable'],
             'special_deals' => ['nullable'],
-            'vendor_id' => ['required'],
+
 
             'product_thumbnail' => ['required', 'mimes:png,jpg,webp', 'max:5024'],
         ];
