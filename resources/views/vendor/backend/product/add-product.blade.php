@@ -31,7 +31,7 @@
         </ul>
     </div>
 @endif
-        <form method="post" id="myForm" action="{{route('store.product')}}" enctype="multipart/form-data">
+        <form method="post" id="myForm" action="{{route('vendor.store-product')}}" enctype="multipart/form-data">
             @csrf
            <div class="form-body mt-4">
             <div class="row">

@@ -3,10 +3,7 @@
 namespace App\Http\Controllers\Backend;
 
 use App\Http\Controllers\Controller;
-use App\Http\Requests\Admin\AddProductRequest;
-use App\Http\Requests\Admin\UpdateImageRequest;
-use App\Http\Requests\Admin\UpdateProductRequest;
-use App\Http\Requests\Admin\UpdateProductThumbnailRequest;
+use App\Http\Requests\Vendor\StoreVendorRequest;
 use App\Models\Product;
 use App\Models\Brand;
 use App\Models\Category;
@@ -40,6 +37,53 @@ class VendorProductController extends Controller
             'vendor.backend.product.add-product',
             ['brands' => $brands, 'categories' => $categories]
         );
+    }
+    public function storeVendorProduct(StoreVendorRequest $request): RedirectResponse
+    {
+        $data = $request->validated();
+        DB::transaction(function () use ($data, $request) {
+            $image = $request->file('product_thumbnail');
+            $nameGen = hexdec(uniqid()) . '.' . $image->getClientOriginalExtension();
+            Image::make($image)->resize(800, 800)->save('uploads/product_images/thumbnails/' . $nameGen);
+            $savedUrl = 'uploads/product_images/thumbnails/' . $nameGen;
+            $productId = Product::insertGetId([
+                'brand_id' => $data['brand_id'],
+                'product_name' => $data['product_name'],
+                'product_slug' => str()->slug($data['product_name']),
+                'product_code' => $data['product_code'],
+                'product_qty' => $data['product_qty'],
+                'product_size' => $data['product_size'],
+                'product_tags' => $data['product_tags'],
+                'product_color' => $data['product_color'],
+                'short_descp' => $data['short_descp'],
+                'long_descp' => $data['long_descp'],
+                'selling_price' => $data['selling_price'],
+                'discount_price' => $data['discount_price'],
+                'product_thumbnail' => $savedUrl,
+                'vendor_id' => auth()->user()->id,
+                'category_id' => $data['category_id'],
+                'sub_category_id' => $data['sub_category_id'],
+                'status' => 1,
+                'created_at' => Carbon::now()
+
+            ]);
+
+            $images = $request->file('images');
+            foreach ($images as $img) {
+                $productImage = hexdec(uniqid()) . '.' . $img->getClientOriginalExtension();
+                Image::make($img)->resize(800, 800)->save('uploads/product_images/images/' . $productImage);
+                $imageUrl = 'uploads/product_images/images/' . $productImage;
+                ModelsImage::create([
+                    'product_id' => $productId,
+                    'photo_name' => $imageUrl,
+                    'created_at' => Carbon::now()
+                ]);
+            }
+        });
+
+
+        $notifiction = ['message' => 'Vendor Product Created Successfully !', 'alert-type' => 'success'];
+        return redirect()->route('vendor.all-product')->with($notifiction);
     }
     public function getVendorSubCategory($category_id): JsonResponse
     {
