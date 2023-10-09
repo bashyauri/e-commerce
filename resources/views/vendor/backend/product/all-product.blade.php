@@ -72,8 +72,8 @@
 
 				<td>
                     <div class="d-inline-block">
-                        <a class="btn btn-primary" href="{{ route('edit.product',$item->id) }}" title="Edit Data"><i class="fa fa-pencil"></i></a>
-                        <form class="d-inline" action="{{ route('delete.product',$item->id) }}" method="POST">
+                        <a class="btn btn-primary" href="{{ route('vendor.edit-product',$item->id) }}" title="Edit Data"><i class="fa fa-pencil"></i></a>
+                        <form class="d-inline" action="" method="POST">
                             @csrf
                             @method('DELETE')
                             <button type="submit" class="btn btn-danger" id="delete" title="Delete Data"><i class="fa fa-trash"></i></button>
