@@ -222,7 +222,7 @@
                                             <th scope="row">{{ $index + 1 }}</th>
                                             <td><img src="{{ asset($image->photo_name) }}" alt="" style="width: 70px; height: 40px;"></td>
                                             <td>
-                                                <form action="{{ route('update.product-image', $image->id) }}" method="POST" enctype="multipart/form-data">
+                                                <form action="{{ route('vendor.update.product-image', $image->id) }}" method="POST" enctype="multipart/form-data">
                                                     @csrf
                                                     @method('PUT')
                                                     <input type="file" class="form-group" name="photo_name">

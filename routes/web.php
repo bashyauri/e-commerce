@@ -76,6 +76,7 @@ Route::middleware(['auth', 'role:vendor'])->group(function () {
         Route::get('/vendor/edit/product/{product}', 'editVendorProduct')->name('vendor.edit-product');
         Route::put('/vendor/update/product/{product}', 'updateVendorProduct')->name('vendor.update-product');
         Route::patch('vendor/update/product-thumbnail/{product}', 'updateVendorProductThumbnail')->name('vendor.update.product-thumbnail');
+        Route::put('vendor/update/product-image/{image}', 'updateVendorProductImage')->name('vendor.update.product-image');
     });
 });
 

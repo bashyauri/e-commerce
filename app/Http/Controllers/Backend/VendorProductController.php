@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Backend;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\Vendor\StoreVendorRequest;
 use App\Http\Requests\Vendor\UpdateProductRequest;
+use App\Http\Requests\Vendor\UpdateProductThumbnailRequest;
 use App\Models\Product;
 use App\Models\Brand;
 use App\Models\Category;
