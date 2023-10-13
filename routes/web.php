@@ -78,6 +78,9 @@ Route::middleware(['auth', 'role:vendor'])->group(function () {
         Route::patch('vendor/update/product-thumbnail/{product}', 'updateVendorProductThumbnail')->name('vendor.update.product-thumbnail');
         Route::put('vendor/update/product-image/{image}', 'updateVendorProductImage')->name('vendor.update.product-image');
         Route::delete('/vendor/delete/product-image/{image}', 'deleteVendorProductImage')->name('vendor.delete.product-image');
+        Route::patch('/vendor/inactive/product/{product}', 'inactiveVendorProduct')->name('vendor.inactive.product');
+        Route::patch('/vendor/active/product/{product}', 'activeVendorProduct')->name('vendor.active.product');
+        Route::delete('/vendor/delete/product/{product}', 'deleteVendorProduct')->name('vendor.delete.product');
     });
 });
 

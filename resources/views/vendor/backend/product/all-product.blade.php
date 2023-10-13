@@ -73,20 +73,20 @@
 				<td>
                     <div class="d-inline-block">
                         <a class="btn btn-primary" href="{{ route('vendor.edit-product',$item->id) }}" title="Edit Data"><i class="fa fa-pencil"></i></a>
-                        <form class="d-inline" action="" method="POST">
+                        <form class="d-inline" action="{{route('vendor.delete.product',$item->id)}}" method="POST">
                             @csrf
                             @method('DELETE')
                             <button type="submit" class="btn btn-danger" id="delete" title="Delete Data"><i class="fa fa-trash"></i></button>
                         </form>
                         <a class="btn btn-secondary" href="{{ route('edit.category',$item->id) }}" title="View Data"><i class="fa fa-eye"></i></a>
                         @if ($item->status === '1')
-                        <form class="d-inline" action="{{ route('inactive.product',$item->id) }}" method="POST">
+                        <form class="d-inline" action="{{ route('vendor.inactive.product',$item->id) }}" method="POST">
                             @csrf
                             @method('PATCH')
                             <button type="submit" class="btn btn-secondary" title="Inactive"><i class="fa-solid fa-thumbs-down"></i></button>
                         </form>
                         @else
-                        <form class="d-inline" action="{{ route('active.product',$item->id) }}" method="POST">
+                        <form class="d-inline" action="{{ route('vendor.active.product',$item->id) }}" method="POST">
                             @csrf
                             @method('PATCH')
                             <button type="submit" class="btn btn-success" title="Active"><i class="fa-solid fa-thumbs-up"></i></button>

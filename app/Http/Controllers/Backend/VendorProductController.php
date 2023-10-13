@@ -202,4 +202,43 @@ class VendorProductController extends Controller
         $notifiction = ['message' => 'Image Deleted Successfully !', 'alert-type' => 'success'];
         return redirect()->back()->with($notifiction);
     }
+    public function activeVendorProduct(Product $product): RedirectResponse
+    {
+        $product->update([
+            'status' => '1',
+        ]);
+        $notifiction = ['message' => 'Product status activated successfully!', 'alert-type' => 'success'];
+        return redirect()->back()->with($notifiction);
+    }
+    public function inactiveVendorProduct(Product $product): RedirectResponse
+    {
+        $product->update([
+            'status' => '0',
+        ]);
+        $notifiction = ['message' => 'Product status deactivated successfully!', 'alert-type' => 'success'];
+        return redirect()->back()->with($notifiction);
+    }
+    public function deleteVendorProduct(Product $product): RedirectResponse
+    {
+        $images = ModelsImage::where('product_id', $product->id)->get();
+        DB::transaction(function () use ($product, $images) {
+            unlink($product->product_thumbnail);
+            $product->delete();
+
+
+
+            foreach ($images as $image) {
+
+                try {
+                    unlink($image->photo_name);
+                    $image->delete();
+                } catch (Exception $e) {
+                    // Log or handle the error
+                    Log::info("Failed to delete file: " . $image->photo_name);
+                }
+            }
+        });
+        $notifiction = ['message' => 'Product deleted!', 'alert-type' => 'success'];
+        return redirect()->back()->with($notifiction);
+    }
 }
