@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Backend;
 
 use App\Http\Controllers\Controller;
 use App\Http\Requests\Vendor\StoreVendorRequest;
+use App\Http\Requests\Vendor\UpdateImageRequest;
 use App\Http\Requests\Vendor\UpdateProductRequest;
 use App\Http\Requests\Vendor\UpdateProductThumbnailRequest;
 use App\Models\Product;
@@ -169,5 +170,36 @@ class VendorProductController extends Controller
         $notifiction = ['message' => 'Product Updated With Image', 'alert-type' => 'success'];
 
         return to_route('vendor.product')->with($notifiction);
+    }
+    public function updateVendorProductImage(UpdateImageRequest $request, ModelsImage $image)
+    {
+
+        $data = $request->validated();
+        $img = $data['photo_name'];
+
+
+        unlink($image->photo_name);
+        $productImage = hexdec(uniqid()) . '.' . $img->getClientOriginalExtension();
+        Image::make($img)->resize(800, 800)->save('uploads/product_images/images/' . $productImage);
+        $imageUrl = 'uploads/product_images/images/' . $productImage;
+        $image->update([
+            'product_id' => $image->product_id,
+            'photo_name' => $imageUrl,
+            'created_at' => Carbon::now()
+        ]);
+        $notifiction = ['message' => 'Image Updated Successfully', 'alert-type' => 'success'];
+
+        return redirect()->back()->with($notifiction);
+    }
+    public function deleteVendorProductImage(ModelsImage $image): RedirectResponse
+    {
+
+
+        DB::transaction(function () use ($image) {
+            unlink($image->photo_name);
+            $image->delete();
+        });
+        $notifiction = ['message' => 'Image Deleted Successfully !', 'alert-type' => 'success'];
+        return redirect()->back()->with($notifiction);
     }
 }

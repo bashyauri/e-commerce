@@ -230,7 +230,7 @@
                                                 </form>
                                             </td>
                                             <td>
-                                                <form action="{{ route('delete.product-image', $image->id) }}" method="POST">
+                                                <form action="{{ route('vendor.delete.product-image', $image->id) }}" method="POST">
                                                     @csrf
                                                     @method('DELETE')
                                                     <button type="submit" class="btn btn-danger" id="delete" title="Delete Image">Delete</button>
@@ -261,7 +261,7 @@
 
 
  $(document).ready(function(){
-  $('#images').on('change', function(){ //on file input change
+  $('#photo_name').on('change', function(){ //on file input change
      if (window.File && window.FileReader && window.FileList && window.Blob) //check File API supported browser
      {
          var data = $(this)[0].files; //this file data
