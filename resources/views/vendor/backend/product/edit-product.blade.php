@@ -184,7 +184,7 @@
   <hr>
   <div class="card">
     <div class="card-body">
-        <form  action="{{ route('update.product-thumbnail', $product->id) }}" method="POST" enctype="multipart/form-data">
+        <form  action="{{ route('vendor.update.product-thumbnail', $product->id) }}" method="POST" enctype="multipart/form-data">
                 @csrf
                 @method('PATCH')
                 <input type="hidden" name="old_image" value="{{$product->product_thumbnail}}" />

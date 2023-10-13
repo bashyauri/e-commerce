@@ -143,4 +143,30 @@ class VendorProductController extends Controller
         $notifiction = ['message' => 'Vendor Product Updated Without Image', 'alert-type' => 'success'];
         return redirect()->route('vendor.product')->with($notifiction);
     }
+    public function updateVendorProductThumbnail(UpdateProductThumbnailRequest $request, Product $product): RedirectResponse
+    {
+
+        $data = $request->validated();
+
+        $oldImage = $data['old_image'];
+
+        $image = $request->file('product_thumbnail');
+
+        $nameGen = hexdec(uniqid()) . '.' . $image->getClientOriginalExtension();
+
+        Image::make($image)->resize(800, 800)->save('uploads/product_images/thumbnails/' . $nameGen);
+        $savedUrl = 'uploads/product_images/thumbnails/' . $nameGen;
+
+        if (file_exists($oldImage)) {
+            unlink($oldImage);
+        }
+
+        $product->update([
+            'product_thumbnail' => $savedUrl,
+            'updated_at' => Carbon::now()
+        ]);
+        $notifiction = ['message' => 'Product Updated With Image', 'alert-type' => 'success'];
+
+        return to_route('vendor.product')->with($notifiction);
+    }
 }
