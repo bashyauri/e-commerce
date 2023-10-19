@@ -4,6 +4,7 @@ use App\Http\Controllers\AdminController;
 use App\Http\Controllers\Backend\BrandController;
 use App\Http\Controllers\Backend\CategoryController;
 use App\Http\Controllers\Backend\ProductController;
+use App\Http\Controllers\Backend\SliderController;
 use App\Http\Controllers\Backend\SubCategoryController;
 use App\Http\Controllers\Backend\VendorProductController;
 use App\Http\Controllers\ProfileController;
@@ -84,7 +85,7 @@ Route::middleware(['auth', 'role:vendor'])->group(function () {
     });
 });
 
-Route::get('/admin/login', [AdminController::class, 'login'])->middleware(RedirectIfAuthenticated::class);;
+Route::get('/admin/login', [AdminController::class, 'login'])->middleware(RedirectIfAuthenticated::class);
 Route::get('/vendor/login', [VendorController::class, 'login'])->name('vendor.login')->middleware(RedirectIfAuthenticated::class);;
 Route::get('/become-vendor', [VendorController::class, 'becomeVendor'])->name('become.vendor');
 Route::post('/vendor/register', [VendorController::class, 'register'])->name('vendor.register');
@@ -144,5 +145,15 @@ Route::middleware(['auth', 'role:admin'])->group(function () {
         Route::patch('/inactive/product/{product}', 'inactiveProduct')->name('inactive.product');
         Route::patch('/active/product/{product}', 'activeProduct')->name('active.product');
         Route::delete('/delete/product/{product}', 'deleteProduct')->name('delete.product');
+    });
+    Route::controller(SliderController::class)->group(function () {
+        // All category routes
+        Route::get('/all/category', 'allCategory')->name('all.category');
+        // Route::get('/add/category', 'addCategory')->name('add.category');
+        Route::get('/add/category', 'addCategory')->name('add.category');
+        Route::post('/store/category', 'storeCategory')->name('store.category');
+        Route::get('/edit/category/{id}', 'editCategory')->name('edit.category');
+        Route::post('/update/category/', 'updateCategory')->name('update.category');
+        Route::delete('/delete/category/{category}', 'deleteCategory')->name('delete.category');
     });
 });
