@@ -148,9 +148,9 @@ Route::middleware(['auth', 'role:admin'])->group(function () {
     });
     Route::controller(SliderController::class)->group(function () {
         // All category routes
-        Route::get('/all/category', 'allCategory')->name('all.category');
+        Route::get('/all/slider', 'allSlider')->name('all.slider');
         // Route::get('/add/category', 'addCategory')->name('add.category');
-        Route::get('/add/category', 'addCategory')->name('add.category');
+        Route::get('/add/slider', 'addSlider')->name('add.slider');
         Route::post('/store/category', 'storeCategory')->name('store.category');
         Route::get('/edit/category/{id}', 'editCategory')->name('edit.category');
         Route::post('/update/category/', 'updateCategory')->name('update.category');
