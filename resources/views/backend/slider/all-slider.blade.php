@@ -49,8 +49,8 @@
 
 				<td>
 
-    <form action="{{ route('delete.category',$item->id) }}" method="Post">
-        <a class="btn btn-primary" href="{{ route('edit.category',$item->id) }}">Edit</a>
+    <form action="{{ route('delete.slider',$item->id) }}" method="Post">
+        <a class="btn btn-primary" href="{{ route('edit.slider',$item->id) }}">Edit</a>
         @csrf
         @method('DELETE')
         <button type="submit" class="btn btn-danger" id="delete" >Delete</button>
