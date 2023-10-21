@@ -163,7 +163,7 @@ Route::middleware(['auth', 'role:admin'])->group(function () {
         // Route::get('/add/category', 'addCategory')->name('add.category');
         Route::get('/add/banner', 'addBanner')->name('add.banner');
         Route::post('/store/banner', 'storeBanner')->name('store.banner');
-        Route::get('/edit/slider/{id}', 'editSlider')->name('edit.slider');
+        Route::get('/edit/banner/{id}', 'editBanner')->name('edit.banner');
         Route::post('/update/slider/', 'updateSlider')->name('update.slider');
         Route::delete('/delete/slider/{slider}', 'deleteSlider')->name('delete.slider');
     });
