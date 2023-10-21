@@ -9,6 +9,7 @@ use App\Models\Banner;
 use Illuminate\Contracts\View\View;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 use Image;
 
 class BannerController extends Controller
@@ -43,14 +44,14 @@ class BannerController extends Controller
         $banner = Banner::findOrFail($id);
         return view('backend.banner.edit-banner', ['banner' => $banner]);
     }
-    public function updateSlider(UpdateBannerRequest $request): RedirectResponse
+    public function updateBanner(UpdateBannerRequest $request): RedirectResponse
     {
         $data = $request->validated();
         $oldImage = $data['old_image'];
         if (isset($data['banner_image'])) {
             $image = $request->file('banner_image');
             $nameGen = hexdec(uniqid()) . '.' . $image->getClientOriginalExtension();
-            Image::make($image)->resize(2786, 807)->save('uploads/banner_images/' . $nameGen);
+            Image::make($image)->resize(768, 480)->save('uploads/banner_images/' . $nameGen);
             $savedUrl = 'uploads/banner_images/' . $nameGen;
             if (file_exists($oldImage)) {
                 unlink($oldImage);
@@ -72,5 +73,16 @@ class BannerController extends Controller
 
         $notifiction = ['message' => 'Banner Updated without image Successfully !', 'alert-type' => 'success'];
         return to_route('all.banner')->with($notifiction);
+    }
+    public function deleteBanner(Banner $banner): RedirectResponse
+    {
+
+
+        DB::transaction(function () use ($banner) {
+            $banner->delete();
+            unlink($banner->banner_image);
+        });
+        $notifiction = ['message' => 'Banner Deleted Successfully !', 'alert-type' => 'success'];
+        return redirect()->back()->with($notifiction);
     }
 }

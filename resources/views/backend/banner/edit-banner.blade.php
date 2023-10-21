@@ -25,7 +25,7 @@
                 <div class="col-lg-10">
                     <div class="card">
                         <div class="card-body">
-                            <form method="post" id="myForm" action="{{route('update.slider')}}" enctype="multipart/form-data">
+                            <form method="post" id="myForm" action="{{route('update.banner')}}" enctype="multipart/form-data">
                                 @csrf
                                 <input type="hidden" name="id" value="{{$banner->id}}" />
                                 <input type="hidden" name="old_image" value="{{$banner->banner_image}}" />

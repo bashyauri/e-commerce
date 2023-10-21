@@ -49,7 +49,7 @@
 
 				<td>
 
-    <form action="{{ route('delete.slider',$item->id) }}" method="Post">
+    <form action="{{ route('delete.banner',$item->id) }}" method="Post">
         <a class="btn btn-primary" href="{{ route('edit.banner',$item->id) }}">Edit</a>
         @csrf
         @method('DELETE')
