@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\AdminController;
+use App\Http\Controllers\Backend\BannerController;
 use App\Http\Controllers\Backend\BrandController;
 use App\Http\Controllers\Backend\CategoryController;
 use App\Http\Controllers\Backend\ProductController;
@@ -149,6 +150,16 @@ Route::middleware(['auth', 'role:admin'])->group(function () {
     Route::controller(SliderController::class)->group(function () {
         // All category routes
         Route::get('/all/slider', 'allSlider')->name('all.slider');
+        // Route::get('/add/category', 'addCategory')->name('add.category');
+        Route::get('/add/slider', 'addSlider')->name('add.slider');
+        Route::post('/store/slider', 'storeSlider')->name('store.slider');
+        Route::get('/edit/slider/{id}', 'editSlider')->name('edit.slider');
+        Route::post('/update/slider/', 'updateSlider')->name('update.slider');
+        Route::delete('/delete/slider/{slider}', 'deleteSlider')->name('delete.slider');
+    });
+    Route::controller(BannerController::class)->group(function () {
+        // All category routes
+        Route::get('/all/banner', 'allBanner')->name('all.banner');
         // Route::get('/add/category', 'addCategory')->name('add.category');
         Route::get('/add/slider', 'addSlider')->name('add.slider');
         Route::post('/store/slider', 'storeSlider')->name('store.slider');
