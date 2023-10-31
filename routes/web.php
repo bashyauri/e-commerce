@@ -8,6 +8,7 @@ use App\Http\Controllers\Backend\ProductController;
 use App\Http\Controllers\Backend\SliderController;
 use App\Http\Controllers\Backend\SubCategoryController;
 use App\Http\Controllers\Backend\VendorProductController;
+use App\Http\Controllers\Frontend\IndexController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\VendorController;
@@ -168,3 +169,5 @@ Route::middleware(['auth', 'role:admin'])->group(function () {
         Route::delete('/delete/banner/{banner}', 'deleteBanner')->name('delete.banner');
     });
 });
+// Frontend Product Details
+Route::get('/product/details/{product}/{slug}', [IndexController::class, 'productDetails']);
