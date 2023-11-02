@@ -49,7 +49,7 @@ $categories = Category::orderBy('category_name', 'ASC')->get();
                                 @endphp
                                 <div class="product-badges product-badges-position product-badges-mrg">
                                     @if (is_null($product->discount_price))
-                                    <span class="new">New</span>
+                                    <span class="new">${{$product->selling_price}}</span>
                                     @else
                                     <span class="hot">{{round($discount)}}%</span>
                                     @endif
