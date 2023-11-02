@@ -11,6 +11,13 @@ class IndexController extends Controller
 {
     public function productDetails(Product $product, string $slug): View
     {
-        return view('frontend.product.product-details')->with('product', $product);
+        $productColor = explode(',', $product->product_color);
+        $productSize =  explode(',', $product->product_size);
+
+        return view('frontend.product.product-details', [
+            'product' => $product,
+            'productColor' => $productColor,
+            'productSize' => $productSize
+        ]);
     }
 }
