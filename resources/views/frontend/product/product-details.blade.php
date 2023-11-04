@@ -140,14 +140,21 @@
                                     <a aria-label="Compare" class="action-btn hover-up" href="shop-compare.html"><i class="fi-rs-shuffle"></i></a>
                                 </div>
                             </div>
+@if (is_null($product->vendor_id))
+<h6>Sold By<span class="text-danger">Owner</span></h6>
+
+@else
+<h6>Sold By<span class="text-danger">{{$product->vendor->name}}</span></h6>
+
+@endif
 <div class="font-xs">
 <ul class="mr-50 float-start">
-<li class="mb-5">Type: <span class="text-brand">Organic</span></li>
-<li class="mb-5">MFG:<span class="text-brand"> Jun 4.2022</span></li>
-<li>LIFE: <span class="text-brand">70 days</span></li>
+<li class="mb-5">Brand: <span class="text-brand">Organic</span></li>
+<li class="mb-5">Category:<span class="text-brand"> Jun 4.2022</span></li>
+<li>SubCategory: <span class="text-brand">70 days</span></li>
 </ul>
 <ul class="float-start">
-<li class="mb-5">SKU: <a href="#">FWM15VKT</a></li>
+<li class="mb-5">Product Code: <a href="#">FWM15VKT</a></li>
 <li class="mb-5">Tags: <a href="#" rel="tag">Snack</a>, <a href="#" rel="tag">Organic</a>, <a href="#" rel="tag">Brown</a></li>
 <li>Stock:<span class="in-stock text-brand ml-5">8 Items In Stock</span></li>
 </ul>
