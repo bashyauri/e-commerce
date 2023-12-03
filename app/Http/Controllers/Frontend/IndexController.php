@@ -15,13 +15,18 @@ class IndexController extends Controller
         $productColor = explode(',', $product->product_color);
         $productSize =  explode(',', $product->product_size);
         $images = Image::where('product_id', $product->id)->get();
+        $relatedProducts = Product::where('id', '!=', $product->id)->where(['category_id' => $product->category_id])
+            ->orderBy('id', 'DESC')
+            ->limit(4)
+            ->get();
 
 
         return view('frontend.product.product-details', [
             'product' => $product,
             'productColor' => $productColor,
             'productSize' => $productSize,
-            'images' => $images
+            'images' => $images,
+            'relatedProducts' => $relatedProducts
         ]);
     }
 }
